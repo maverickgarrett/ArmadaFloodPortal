@@ -1,0 +1,3 @@
+﻿namespace ArmadaPortal.Serene.Administration {
+}
+

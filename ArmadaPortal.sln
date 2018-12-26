@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28306.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaPortal", "ArmadaPortal\ArmadaPortal.csproj", "{A605C665-3612-428E-B70E-20BF9C9ED819}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaPortal.Core", "ArmadaPortal.Core\ArmadaPortal.Core.csproj", "{7D7F558E-4BB1-4749-AE68-97EED1673857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaPortal.Data", "ArmadaPortal.Data\ArmadaPortal.Data.csproj", "{38CC01BD-D0FB-492D-AACE-9931728E8327}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaPortal.TestConsole", "ArmadaPortal.TestConsole\ArmadaPortal.TestConsole.csproj", "{C9DB4996-7F1B-414E-AA57-2B2B10C70702}"
+EndProject
+Global
+	GlobalSection(CrmCodeGeneration) = preSolution
+		UseSSL = True
+		UseIFD = False
+		UseOnline = True
+		UseOffice365 = True
+		ServerName = crm.dynamics.com
+		ServerPort = 
+		HomeRealm = 
+		Domain = 
+		WindowsAuthorization = False
+		Organization = armadadevelopment
+		IncludeEntities = account,contact,lead,opportunity,systemuser
+		IncludeNonStandard = True
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A605C665-3612-428E-B70E-20BF9C9ED819}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{A605C665-3612-428E-B70E-20BF9C9ED819}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{A605C665-3612-428E-B70E-20BF9C9ED819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A605C665-3612-428E-B70E-20BF9C9ED819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D7F558E-4BB1-4749-AE68-97EED1673857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D7F558E-4BB1-4749-AE68-97EED1673857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D7F558E-4BB1-4749-AE68-97EED1673857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D7F558E-4BB1-4749-AE68-97EED1673857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CC01BD-D0FB-492D-AACE-9931728E8327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CC01BD-D0FB-492D-AACE-9931728E8327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CC01BD-D0FB-492D-AACE-9931728E8327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CC01BD-D0FB-492D-AACE-9931728E8327}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5F34DDC-FF6A-4A74-A53B-3ED839059763}
+	EndGlobalSection
+EndGlobal

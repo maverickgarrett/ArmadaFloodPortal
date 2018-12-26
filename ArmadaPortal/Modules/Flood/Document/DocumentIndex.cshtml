@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Order Document List";
+}
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new ArmadaPortal.Flood.DocumentGrid($('#GridDiv'), {
+        });
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Flood Orders";
+}
+@model ArmadaPortal.Flood.Pages.FloodOrderDashboardPageModel
+@section Head {
+    @*@Html.Script("dynamic://Lookup.Flood.Branch")*@
+    <script>var CKEDITOR_BASEPATH = '@ContentHashCache.ResolvePath("~/Scripts/ckeditor/")';</script>
+    @Html.ScriptBundle("CKEditor")
+    @Html.StyleBundle("Pages/Dashboard")
+    @Html.ScriptBundle("Pages/Dashboard")
+
+}
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Filter by:</h3>
+    </div><!-- /.box-header -->
+
+    <div class="box">
+        <div class="box-body">
+            <a class="btn btn-app">
+                <span class="badge bg-navy">@Model.TotalOrders</span>
+                <i class="fa fa-inbox"></i> Total Orders
+            </a>
+            <a class="btn btn-app">
+                <span class="badge bg-teal">@Model.NewOrders</span>
+                <i class="fa fa-inbox"></i> New Orders
+            </a>
+
+            <a class="btn btn-app">
+                <span class="badge bg-blue">@Model.OrdersInProgress</span>
+                <i class="fa fa-inbox"></i> In Progress
+            </a>
+
+            <a class="btn btn-app">
+                <span class="badge bg-red">@Model.IssueOrOnHoldOrders</span>
+                <i class="fa fa-inbox"></i> Need Review
+            </a>
+
+            <a class="btn btn-app">
+                <span class="badge bg-aqua">@Model.CompletedOrders</span>
+                <i class="fa fa-inbox"></i> Completed Orders
+            </a>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new ArmadaPortal.Flood.FloodOrderGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

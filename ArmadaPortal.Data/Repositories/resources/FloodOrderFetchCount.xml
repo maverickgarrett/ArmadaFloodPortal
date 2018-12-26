@@ -1,0 +1,10 @@
+<fetch aggregate="true" returntotalrecordcount="true">
+  <entity name="aai_floodriskorder">
+    <attribute name="aai_flooddeterminationstatus" alias="FloodStatus" groupby="true" />
+    <attribute name="aai_floodriskorderid" alias="ID" aggregate="count" />
+    <filter type="and">
+      <condition attribute="statuscode" operator="eq" value="1" />
+      <condition attribute="aai_account" operator="eq" value="cfd96059-adbb-e811-a965-000d3a32c8b8" />
+    </filter>
+  </entity>
+</fetch>
