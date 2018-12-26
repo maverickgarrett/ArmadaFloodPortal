@@ -151,7 +151,7 @@
 
 
         [HttpPost]
-        public DocumentImportResponse DocumentImport(IUnitOfWork uow, DocumentImportRequest request)
+        public DocumentImportResponse Create(IUnitOfWork uow, DocumentImportRequest request)
         {
             request.CheckNotNull();
             Check.NotNullOrWhiteSpace(request.FileName, "filename");

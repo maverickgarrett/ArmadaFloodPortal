@@ -13,6 +13,13 @@ namespace ArmadaPortal.Flood.Entities
 
     public sealed class DocumentRow : Row, IIdRow, INameRow
     {
+        [DisplayName("Order ID"), Updatable(false)]
+        public String OrderId
+        {
+            get { return Fields.OrderId[this].ToString(); }
+            set { Fields.OrderId[this] = value; }
+        }
+
         [DisplayName("Document ID"), NotNull, Identity, QuickSearch, Updatable(false), LookupInclude]
         public String DocumentId
         {
@@ -84,6 +91,7 @@ namespace ArmadaPortal.Flood.Entities
 
         public class RowFields : RowFieldsBase
         {
+            public StringField OrderId;
             public StringField DocumentId;
             public StringField DocumentType;
             public StringField DocumentTitle;

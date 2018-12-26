@@ -210,6 +210,7 @@
                 this.element.find('sup').hide();
                 this.deleteButton.hide();
                 this.form.UploadDocument.element.hide();
+                this.element.find(".category-title:contains('Documents')").parent().hide(false);
 
                 //Serenity.EditorUtils.setReadOnly(this.form.LoanNumber, false);
                 //Serenity.EditorUtils.setReadOnly(this.form.Borrower, false);

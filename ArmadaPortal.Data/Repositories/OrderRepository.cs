@@ -285,7 +285,11 @@ namespace ArmadaPortal.Data.Repositories
                 var statusFilterConvertSuccess = int.TryParse(statusFilter, out statusFilterId);
 
                 if (statusFilterConvertSuccess) {
-                    orders = (from c in orders.Where(x => x.FloodDetStatus == (FloodDeterminationStatus)statusFilterId) select c);
+                    orders = (from c in _xrm.FloodRiskOrderSet
+                              where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                              && c.Account.Id == accountId
+                              && c.FloodDetStatus == (FloodDeterminationStatus)statusFilterId
+                              select c);
                 }
             }
 
@@ -320,7 +324,12 @@ namespace ArmadaPortal.Data.Repositories
 
                 if (statusFilterConvertSuccess)
                 {
-                    orders = (from c in orders.Where(x => x.FloodDetStatus == (FloodDeterminationStatus)statusFilterId) select c);
+                    orders = (from c in _xrm.FloodRiskOrderSet
+                     where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                     && c.Account.Id == accountId
+                     && c.FloodDetStatus == (FloodDeterminationStatus)statusFilterId
+                     select c);
+
                 }
             }
 

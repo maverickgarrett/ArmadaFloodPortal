@@ -59,7 +59,7 @@
             buttons.splice(Q.indexOf(buttons, x => x.cssClass == "add-button"), 1);
 
             buttons.push({
-                title: 'Add New Order', cssClass: 'add-note-button',
+                title: 'Add New Order', cssClass: 'add-document-button',
                 onClick: () => {
                     // we could use EditItem here too, but for demonstration
                     // purposes we are manually creating dialog this time

@@ -50,9 +50,6 @@
             Q.first(columns, x => x.field == fld.DocumentName).format =
                 ctx => `<a href="javascript:;" class="document-link">${Q.htmlEncode(ctx.value)}</a>`;
 
-            Q.first(columns, x => x.field == fld.DocumentName).format =
-                ctx => `<a href="javascript:;" class="document-link">${Q.htmlEncode(ctx.value)}</a>`;
-
             return columns;
         }
 
@@ -90,6 +87,25 @@
             //    grid: this,
             //    onViewSubmit: () => this.onViewSubmit()
             //}));
+
+
+            buttons.push({
+                title: 'Upload Document', cssClass: 'add-document-button',
+                onClick: () => {
+                    // we could use EditItem here too, but for demonstration
+                    // purposes we are manually creating dialog this time
+                    var dlg = new Flood.DocumentImportDialog();
+
+                    // let grid watch for changes to manually created dialog, 
+                    // so when a new item is saved, grid can refresh itself
+                    this.initDialog(dlg);
+
+                    dlg.loadEntityAndOpenDialog(<Flood.DocumentRow>{
+                        OrderId: 'cfd96059-adbb-e811-a965-000d3a32c8b8'
+                    });
+                }
+            });
+
 
             return buttons;
         }
