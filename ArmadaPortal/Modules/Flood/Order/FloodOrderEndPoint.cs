@@ -48,7 +48,6 @@
             _orderRepository = new OrderRepository();
             _accountRepository = new AccountRepository();
             _userRepository = new UserRepository();
-
             _accountId = new Guid("cfd96059-adbb-e811-a965-000d3a32c8b8");
             _branchId = new Guid("21ad0673-adbb-e811-a965-000d3a32c8b8");
             //AllyMaster
@@ -88,8 +87,6 @@
 
         }
 
-
-
         private SaveResponse CreateOrder(IUnitOfWork uow, FloodOrderSaveRequest request)
         {
             var retResponse = new SaveResponse();
@@ -103,8 +100,6 @@
             return retResponse;
 
         }
-
-
 
         public ListResponse<MyRow> List(IDbConnection connection, FloodOrderListRequest request)
         {
@@ -202,37 +197,47 @@
 
             var returnCrmOrders = new List<FloodOrder>();
             var floodOrderProperties = typeof(FloodOrder).GetProperties();
-            var baseCrmOrders = _orderRepository.GetAllOrdersForAccount(_accountId);
+
 
             var sortField = request.Sort != null ? request.Sort.FirstOrDefault() : null;
             var searchField = request.ContainsField;
             var searchText = request.ContainsText;
+            var statusFilter = "0";
+
+            var reqStatusFilter = request.EqualityFilter["FloodOrderStatus"];
+            if (reqStatusFilter != null && reqStatusFilter.HasValue())
+            {
+                statusFilter = request.EqualityFilter["FloodOrderStatus"] as string;
+            }
+
+            var baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithStatusFilter(_accountId, statusFilter);
+
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                baseCrmOrders = _orderRepository.GetAllOrdersForAccountSearch(_accountId, searchField, searchText.Trim());
+                baseCrmOrders = _orderRepository.GetAllOrdersForAccountSearch(_accountId, searchField, searchText.Trim(), statusFilter);
             }
             else if (sortField !=null && sortField.Field !=null)
             {
                     switch (sortField.Field)
                     {
                         case "OrderNumber":
-                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "OrderNumber", sortField.Descending);
+                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "OrderNumber", sortField.Descending, statusFilter);
                             break;
                         case "OrderDate":
-                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "OrderDate", sortField.Descending);
+                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "OrderDate", sortField.Descending, statusFilter);
                             break;
                         case "FloodOrderStatusDescription":
-                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "FloodDetStatus", sortField.Descending);
+                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "FloodDetStatus", sortField.Descending, statusFilter);
                             break;
                         case "LoanNumber":
-                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "LoanNumber", sortField.Descending);
+                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "LoanNumber", sortField.Descending, statusFilter);
                             break;
                         case "Borrower":
-                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "Borrower", sortField.Descending);
+                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "Borrower", sortField.Descending, statusFilter);
                             break;
                         case "AddressEnteredFormatted":
-                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "Address1Orig", sortField.Descending);
+                            baseCrmOrders = _orderRepository.GetAllOrdersForAccountWithSort(_accountId, "Address1Orig", sortField.Descending, statusFilter);
                             break;
                     }
 
@@ -307,7 +312,6 @@
             order.NotesToAnalyst = orderViewModel.Entity.NoteToAnalyst;
         }
 
-
         private void CopyOrderViewModelToOrder(FloodOrderSaveRequest orderViewModel, FloodOrder order)
         {
             order.OrderTypeId = (int?)orderViewModel.OrderType;
@@ -358,6 +362,7 @@
             }
 
         }
+
         private UploadedFile[] ParseAndValidate(string json, string key)
         {
             json = json.TrimToNull();
@@ -373,7 +378,6 @@
 
             return list;
         }
-
 
         private class MySaveHandler : SaveRequestHandler<MyRow>
         {

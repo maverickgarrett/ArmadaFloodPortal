@@ -8,18 +8,20 @@
     [EnumKey("Flood.FloodOrderDetStatusTypeEnum")]
     public enum FloodOrderDetStatusTypeEnum
     {
+        [Description("All Orders")]
+        AllOrders = 0,
+        [Description("Draft")]
+        Draft = FloodDeterminationStatus.Draft,
+        [Description("Ordered")]
+        Ordered = FloodDeterminationStatus.Ordered,
         [Description("Assigned")]
         Assigned = FloodDeterminationStatus.Assigned,
         [Description("Completed")]
         Completed = FloodDeterminationStatus.Completed,
-        [Description("Assigned")]
-        Draft = FloodDeterminationStatus.Draft,
-        [Description("Assigned")]
+        [Description("Issue")]
         Issue = FloodDeterminationStatus.Issue,
         [Description("OnHold")]
         OnHold = FloodDeterminationStatus.OnHold,
-        [Description("Ordered")]
-        Ordered = FloodDeterminationStatus.Ordered,
         [Description("Review")]
         Review = FloodDeterminationStatus.Review,
     }

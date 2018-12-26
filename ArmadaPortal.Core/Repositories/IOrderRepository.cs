@@ -10,8 +10,9 @@ namespace ArmadaPortal.Core.Repositories
     public interface IOrderRepository
     {
         IEnumerable<FloodOrder> GetAllOrdersForAccount(Guid accountId);
-        IEnumerable<FloodOrder> GetAllOrdersForAccountSearch(Guid accountId, string fieldName, string searchString);
-        IEnumerable<FloodOrder> GetAllOrdersForAccountWithSort(Guid accountId,string fieldName, bool sortDesc);
+        IEnumerable<FloodOrder> GetAllOrdersForAccountWithStatusFilter(Guid accountId, string statusFilter);
+        IEnumerable<FloodOrder> GetAllOrdersForAccountSearch(Guid accountId, string fieldName, string searchString, string statusFilter);
+        IEnumerable<FloodOrder> GetAllOrdersForAccountWithSort(Guid accountId,string fieldName, bool sortDesc, string statusFilter);
         IEnumerable<AttachmentData> GetAttachmentsForOrderId(Guid orderId);
         AttachmentData GetFloodDeterminationLetterForOrderId(Guid orderId);
         IEnumerable<DownloadLink> GetDocumentListByOrderId(Guid orderId);

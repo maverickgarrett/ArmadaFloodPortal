@@ -2,6 +2,7 @@
     export interface DocumentRow {
         DocumentId?: string;
         DocumentType?: string;
+        DocumentTitle?: string;
         DocumentName?: string;
         DocumentUrl?: string;
         InsertDate?: string;
@@ -16,6 +17,7 @@
         export declare const enum Fields {
             DocumentId = "DocumentId",
             DocumentType = "DocumentType",
+            DocumentTitle = "DocumentTitle",
             DocumentName = "DocumentName",
             DocumentUrl = "DocumentUrl",
             InsertDate = "InsertDate",

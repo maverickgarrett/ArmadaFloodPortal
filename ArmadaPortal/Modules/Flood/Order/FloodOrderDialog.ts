@@ -209,6 +209,8 @@
                 // remove required asterisk (*)
                 this.element.find('sup').hide();
                 this.deleteButton.hide();
+                this.form.UploadDocument.element.hide();
+
                 //Serenity.EditorUtils.setReadOnly(this.form.LoanNumber, false);
                 //Serenity.EditorUtils.setReadOnly(this.form.Borrower, false);
                 //Serenity.EditorUtils.setReadOnly(this.form.Borrower2, false);

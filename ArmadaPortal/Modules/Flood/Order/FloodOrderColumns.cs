@@ -15,9 +15,13 @@
         [Ignore, Hidden()]
         public String BranchId { get; set; }
 
+        [FilterOnly, QuickFilter]
+        public FloodOrderDetStatusTypeEnum FloodOrderStatus { get; set; }
+
         [EditLink, AlignRight]
         public String OrderNumber { get; set; }
         public DateTime? OrderDate { get; set; }
+
         public String FloodOrderStatusDescription { get; set; }
         public String Borrower { get; set; }
         public String LoanNumber { get; set; }

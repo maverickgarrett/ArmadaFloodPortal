@@ -52,6 +52,12 @@
     jQuery(function () {
         new ArmadaPortal.Flood.FloodOrderGrid($('#GridDiv'), {}).init();
 
+
+
+        var q = Q.parseQueryString();
+        if (q.orderStatusGrouping != null && q.orderStatusGrouping.length) {
+            orderGrid.set_orderstatusfilter(parseInt(q.orderStatusGrouping, 10));
+        }
         Q.initFullHeightGridPage($('#GridDiv'));
     });
 </script>

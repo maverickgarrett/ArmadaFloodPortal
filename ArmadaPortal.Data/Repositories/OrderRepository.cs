@@ -241,13 +241,53 @@ namespace ArmadaPortal.Data.Repositories
             return orders;
         }
 
-        public IEnumerable<FloodOrder> GetAllOrdersForAccountSearch(Guid accountId, string fieldName, string searchString)
+        public IEnumerable<FloodOrder> GetAllOrdersForAccountWithStatusFilter(Guid accountId, string statusFilter = "")
+        {
+            var orders =
+            (from c in _xrm.FloodRiskOrderSet
+            where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+            && c.Account.Id == accountId
+            orderby c.ModifiedOn descending
+            select new FloodOrder(c)
+            );
+
+            if (!string.IsNullOrEmpty(statusFilter) && statusFilter != "0")
+            {
+                var statusFilterId = 0;
+                var statusFilterConvertSuccess = int.TryParse(statusFilter, out statusFilterId);
+
+                if (statusFilterConvertSuccess)
+                {
+                    orders = (from c in _xrm.FloodRiskOrderSet
+                              where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                              && c.Account.Id == accountId
+                              && c.FloodDetStatus.Value == (FloodDeterminationStatus)statusFilterId
+                              orderby c.ModifiedOn descending
+                              select new FloodOrder(c)
+                    );
+                }
+            }
+
+            return orders;
+        }
+
+        public IEnumerable<FloodOrder> GetAllOrdersForAccountSearch(Guid accountId, string fieldName, string searchString, string statusFilter = "")
         {
             var orders =
                 (from o in _xrm.FloodRiskOrderSet
                  where o.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
                  && o.Account.Id == accountId
                  select o);
+
+            if (!string.IsNullOrEmpty(statusFilter) && statusFilter != "0")
+            {
+                var statusFilterId = 0;
+                var statusFilterConvertSuccess = int.TryParse(statusFilter, out statusFilterId);
+
+                if (statusFilterConvertSuccess) {
+                    orders = (from c in orders.Where(x => x.FloodDetStatus == (FloodDeterminationStatus)statusFilterId) select c);
+                }
+            }
 
             if (string.IsNullOrEmpty(fieldName) && !string.IsNullOrEmpty(searchString))
             {
@@ -265,13 +305,24 @@ namespace ArmadaPortal.Data.Repositories
             return retOrders;
         }
 
-        public IEnumerable<FloodOrder> GetAllOrdersForAccountWithSort(Guid accountId, string fieldName, bool sortDesc)
+        public IEnumerable<FloodOrder> GetAllOrdersForAccountWithSort(Guid accountId, string fieldName, bool sortDesc, string statusFilter = "")
         {
             var orders =
                 (from c in _xrm.FloodRiskOrderSet
                  where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
                  && c.Account.Id == accountId
                  select c);
+
+            if (!string.IsNullOrEmpty(statusFilter) && statusFilter != "0")
+            {
+                var statusFilterId = 0;
+                var statusFilterConvertSuccess = int.TryParse(statusFilter, out statusFilterId);
+
+                if (statusFilterConvertSuccess)
+                {
+                    orders = (from c in orders.Where(x => x.FloodDetStatus == (FloodDeterminationStatus)statusFilterId) select c);
+                }
+            }
 
             switch (fieldName)
             {
