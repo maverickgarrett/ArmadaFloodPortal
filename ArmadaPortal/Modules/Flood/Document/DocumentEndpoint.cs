@@ -103,7 +103,16 @@
 
             if (string.IsNullOrEmpty(request.OrderId))
             {
-                request.OrderId = "{0DF0B877-54A0-436F-BB15-80CCEED92660}";
+                var reqOrderIdFilter = request.EqualityFilter["OrderId"];
+                if (reqOrderIdFilter != null && reqOrderIdFilter.HasValue())
+                {
+                    request.OrderId = request.EqualityFilter["OrderId"] as string;
+                }
+
+                if (string.IsNullOrEmpty(request.OrderId))
+                {
+                    return response;
+                }
             }
             var returnDocuments = new List<DownloadLink>();
             var returnDocumentRowList = new List<MyRow>();
@@ -165,14 +174,6 @@
 
         private DocumentImportResponse CreateDocument(IUnitOfWork uow, DocumentImportRequest request)
         {
-            request.CheckNotNull();
-            Check.NotNullOrWhiteSpace(request.UploadDocument, "filename");
-
-            UploadHelper.CheckFileNameSecurity(request.UploadDocument);
-
-            if (!request.UploadDocument.StartsWith("temporary/"))
-                throw new ArgumentOutOfRangeException("filename");
-
             var response = new DocumentImportResponse();
             response.ErrorList = new List<string>();
 

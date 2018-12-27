@@ -15,6 +15,7 @@ namespace ArmadaPortal.Core.Repositories
         IEnumerable<FloodOrder> GetAllOrdersForAccountWithSort(Guid accountId,string fieldName, bool sortDesc, string statusFilter);
         IEnumerable<AttachmentData> GetAttachmentsForOrderId(Guid orderId);
         AttachmentData GetFloodDeterminationLetterForOrderId(Guid orderId);
+        string GetFloodDeterminationLetterIdForOrderId(Guid orderId);
         IEnumerable<DownloadLink> GetDocumentListByOrderId(Guid orderId);
         AttachmentData GetAttachmentByAnnotationId(Guid annotationId);
         AttachmentData GetAttachmentByReferenceId(Guid noteId);

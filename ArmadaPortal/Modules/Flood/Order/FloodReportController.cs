@@ -43,16 +43,17 @@ namespace ArmadaPortal
 
         }
 
-
-
-
-
-        public ActionResult GetFloodOrderDeterminationLetter(string orderId, bool download = true)
+        public ActionResult GetFloodOrderDeterminationLetter(string orderId, bool download = false)
         {
             return this.ExecuteFloodDeterminationLetter(orderId, download);
         }
 
-        private ActionResult ExecuteFloodDeterminationLetter(string reqOrderId, bool download = true)
+        public ActionResult GetDocumentById(string documentId, bool download = false)
+        {
+            return this.ExecuteDocumentRetrieve(documentId, download);
+        }
+
+        private ActionResult ExecuteFloodDeterminationLetter(string reqOrderId, bool download = false)
         {
             //find the first doc marked exposed to portal
             var orderId = Guid.Parse(reqOrderId);
@@ -91,13 +92,7 @@ namespace ArmadaPortal
             Response.AddHeader("Content-Disposition", cd.ToString());
             return File(bytes, UploadHelper.GetMimeType(fileName));
         }
-
-        public ActionResult GetDocumentById(string documentId, bool download = true)
-        {
-            return this.ExecuteDocumentRetrieve(documentId, download);
-        }
-
-        private ActionResult ExecuteDocumentRetrieve(string reqDocumentId, bool download = true)
+        private ActionResult ExecuteDocumentRetrieve(string reqDocumentId, bool download = false)
         {
             //find the first doc marked exposed to portal
             var documentId = Guid.Parse(reqDocumentId);

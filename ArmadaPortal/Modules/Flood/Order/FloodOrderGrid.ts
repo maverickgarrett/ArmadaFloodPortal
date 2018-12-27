@@ -26,25 +26,6 @@
             Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
         }
 
-        protected getQuickFilters() {
-            var filters = super.getQuickFilters();
-
-            //filters.push({
-            //    type: Serenity.LookupEditor,
-            //    options: {
-            //        lookupKey: ProductRow.lookupKey
-            //    },
-            //    field: 'ProductID',
-            //    title: 'Contains Product in Details',
-            //    handler: w => {
-            //        (this.view.params as OrderListRequest).ProductID = Q.toId(w.value);
-            //    },
-            //    cssClass: 'hidden-xs'
-            //});
-
-            return filters;
-        }
-
         protected createQuickFilters() {
             super.createQuickFilters();
 
@@ -59,7 +40,7 @@
             buttons.splice(Q.indexOf(buttons, x => x.cssClass == "add-button"), 1);
 
             buttons.push({
-                title: 'Add New Order', cssClass: 'add-document-button',
+                title: 'Add New Order', cssClass: 'add-button',
                 onClick: () => {
                     // we could use EditItem here too, but for demonstration
                     // purposes we are manually creating dialog this time
@@ -69,7 +50,13 @@
                     // so when a new item is saved, grid can refresh itself
                     this.initDialog(dlg);
 
-                      dlg.loadEntityAndOpenDialog(<Flood.FloodOrderRow>{
+                    dlg.element.bind('dialogclose', () => {
+                        // *** This is triggered after closing dialog ***
+                        this.refresh();
+                    });
+
+
+                    dlg.loadEntityAndOpenDialog(<Flood.FloodOrderRow>{
                           OrderAccountId: 'cfd96059-adbb-e811-a965-000d3a32c8b8',
                           OrderAccountName: 'Alley Bank',
                           OrderCreatedByName: 'Ally Master',
@@ -100,7 +87,7 @@
 
         protected getSlickOptions(): Slick.GridOptions {
             var opt = super.getSlickOptions();
-            opt.showFooterRow = true;
+            opt.showFooterRow = false;
             //opt.rowHeight = 250;
             return opt;
         }

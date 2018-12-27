@@ -54,9 +54,5 @@
         [Category("Documents")]
         public String UploadDocument { get; set; }
 
-
-        //[Tab("Documents")]
-        //[DocumentEditor]
-        //public List<Entities.DocumentRow> DocumentList { get; set; }
     }
 }

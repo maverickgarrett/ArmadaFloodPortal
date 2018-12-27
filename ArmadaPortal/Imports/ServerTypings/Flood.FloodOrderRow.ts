@@ -38,6 +38,8 @@
         Borrower2?: string;
         FloodZone?: string;
         ParcelNumber?: string;
+        ShowDownloadLink?: boolean;
+        ShowDownloadLinkId?: string;
         UploadDocument?: string;
         UploadDocumentFileName?: string;
         ApprovalLetter?: number[];
@@ -94,6 +96,8 @@
             Borrower2 = "Borrower2",
             FloodZone = "FloodZone",
             ParcelNumber = "ParcelNumber",
+            ShowDownloadLink = "ShowDownloadLink",
+            ShowDownloadLinkId = "ShowDownloadLinkId",
             UploadDocument = "UploadDocument",
             UploadDocumentFileName = "UploadDocumentFileName",
             ApprovalLetter = "ApprovalLetter",

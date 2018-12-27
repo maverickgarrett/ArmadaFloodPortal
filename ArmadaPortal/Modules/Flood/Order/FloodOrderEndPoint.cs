@@ -126,8 +126,6 @@
             Guid.TryParse(request.EntityId.ToString(), out orderId);
 
             var baseCrmOrder = _orderRepository.GetOrderById(orderId);
-            var attachments = _orderRepository.GetAttachmentsForOrderId(orderId);
-
 
             if (baseCrmOrder == null)
             {
@@ -180,6 +178,23 @@
                     InsertDate = baseCrmOrder.InsertDate,
                     ModifiedDate = baseCrmOrder.ModifiedDate,
                 };
+
+
+                if (baseCrmOrder.ShowDownloadLink.HasValue && baseCrmOrder.ShowDownloadLink.Value)
+                {
+                    var floodOrderAttatchmentId = _orderRepository.GetFloodDeterminationLetterIdForOrderId(orderId);
+                    if (!string.IsNullOrEmpty(floodOrderAttatchmentId))
+                    {
+                        myOrder.ShowDownloadLink = true;
+                        myOrder.ShowDownloadLinkId = floodOrderAttatchmentId;
+                    }
+                    else
+                    {
+                        myOrder.ShowDownloadLink = false;
+                        myOrder.ShowDownloadLinkId = "";
+                    }
+                }
+
             }
 
 

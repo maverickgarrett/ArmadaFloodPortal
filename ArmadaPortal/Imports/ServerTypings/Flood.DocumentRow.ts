@@ -6,6 +6,7 @@
         DocumentTitle?: string;
         DocumentName?: string;
         DocumentUrl?: string;
+        UploadDocument?: string;
         InsertDate?: string;
         ModifiedDate?: string;
     }
@@ -22,6 +23,7 @@
             DocumentTitle = "DocumentTitle",
             DocumentName = "DocumentName",
             DocumentUrl = "DocumentUrl",
+            UploadDocument = "UploadDocument",
             InsertDate = "InsertDate",
             ModifiedDate = "ModifiedDate"
         }

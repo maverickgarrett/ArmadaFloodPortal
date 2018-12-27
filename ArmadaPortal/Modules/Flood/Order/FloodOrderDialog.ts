@@ -20,6 +20,8 @@
             super();
             //this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
             this.documentsGrid = new FloodOrderDocumentsGrid(this.byId('DocumentsGrid'));
+            this.documentsGrid.openDialogsAsPanel = false; 
+
             DialogUtils.pendingChangesConfirmation(this.element, () => this.getSaveState() != this.loadedState);
         }
 
@@ -28,18 +30,11 @@
             super.loadEntity(entity);
 
             Serenity.TabsExtensions.setDisabled(this.tabs, 'Documents', this.isNewOrDeleted());
-
             this.documentsGrid.orderId = entity.OrderId;
         }
 
         protected afterLoadEntity() {
             super.afterLoadEntity();
-
-            // these fields are only required in new record mode
-            //this.form.Password.element.toggleClass('required', this.isNew())
-            //    .closest('.field').find('sup').toggle(this.isNew());
-            //this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
-            //    .closest('.field').find('sup').toggle(this.isNew());
         }
 
 
@@ -147,13 +142,6 @@
 
             return buttons;
         }
-
-        private setOrderDetails(details: Flood.FloodOrderRow) {
-            this.form.OrderCreatedByName.value = "Ally Master";
-            this.form.OrderAccountId.value = "cfd96059-adbb-e811-a965-000d3a32c8b8";
-            this.form.BranchId.value = "21ad0673-adbb-e811-a965-000d3a32c8b8";
-        }
-
 
         getSaveState() {
             try {

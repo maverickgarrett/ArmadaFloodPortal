@@ -171,8 +171,6 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.AddressMatchedFormatted[this] = value; }
         }
 
-
-
         [DisplayName("Address"), Size(60), NotNull,QuickSearch(SearchType.StartsWith)]
         public String Address1Orig
         {
@@ -286,9 +284,6 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.EmailCertCC[this] = value; }
         }
 
-
-
-
         [DisplayName("Order Type"), NotNull, LookupInclude]
         public FloodOrderTypeEnum? OrderType
         {
@@ -310,9 +305,7 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.ParcelNumber[this] = value; }
         }
 
-
-
-        [DisplayName("Upload Document JPG, DOC, PDF"), Size(100)]
+        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100)]
         [MultipleFileUploadEditor(FilenameFormat = "OrderDocument/~", CopyToHistory = true)]
         public String UploadDocument
         {
@@ -326,20 +319,26 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.UploadDocumentFileName[this] = value; }
         }
 
+
+        [DisplayName("Show Download Link?")]
+        public bool? ShowDownloadLink
+        {
+            get { return Fields.ShowDownloadLink[this]; }
+            set { Fields.ShowDownloadLink[this] = value; }
+        }
+
+        public String ShowDownloadLinkId
+        {
+            get { return Fields.ShowDownloadLinkId[this]; }
+            set { Fields.ShowDownloadLinkId[this] = value; }
+        }
+
         [DisplayName("Flood Determination Letter")]
         public Stream ApprovalLetter
         {
             get { return Fields.ApprovalLetter[this]; }
             set { Fields.ApprovalLetter[this] = value; }
         }
-
-        //[DisplayName("Documents"), MasterDetailRelation(foreignKey: "OrderId"), NotMapped]
-        //public List<DocumentRow> DocumentList
-        //{
-        //    get { return Fields.DocumentList[this]; }
-        //    set { Fields.DocumentList[this] = value; }
-        //}
-
 
         StringField INameRow.NameField
         {
@@ -399,6 +398,8 @@ namespace ArmadaPortal.Flood.Entities
             public StringField Borrower2;
             public StringField FloodZone;
             public StringField ParcelNumber;
+            public BooleanField ShowDownloadLink;
+            public StringField ShowDownloadLinkId;
             public StringField UploadDocument;
             public StringField UploadDocumentFileName;
             public StreamField ApprovalLetter;

@@ -2279,7 +2279,6 @@
     <TypeScriptCompile Include="Modules\Flood\Document\DocumentDialog.ts" />
     <TypeScriptCompile Include="Modules\Flood\Document\DocumentImportDialog.ts" />
     <TypeScriptCompile Include="Modules\Flood\Document\DocumentGrid.ts" />
-    <TypeScriptCompile Include="Modules\Flood\Order\FloodOrderDocumentDialog.ts" />
     <TypeScriptCompile Include="Modules\Flood\Document\DocumentEditor.ts" />
     <TypeScriptCompile Include="Modules\Flood\Order\FloodOrderDocumentsGrid.ts" />
     <TypeScriptCompile Include="Modules\Flood\Shared\PhoneEditor.ts" />

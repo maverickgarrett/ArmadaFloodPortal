@@ -85,7 +85,6 @@ namespace ArmadaPortal.Core.Models
             this.NotifyEmailCC = floodRiskOrder.EmailCertCC;
             this.IsRush = floodRiskOrder.UrgentIndicator;
 
-
             this.Account = new OrderAccount
             {
                 AccountId = floodRiskOrder.Account != null ? floodRiskOrder.Account.Id : Guid.Empty,
@@ -160,15 +159,25 @@ namespace ArmadaPortal.Core.Models
             };
             this.InsertDate = floodRiskOrder.CreatedOn;
 
-            this.ShowDownloadLink = true;
-            this.MainDownloadLink = new DownloadLink
+
+            if (floodRiskOrder.FloodDetStatus.HasValue && floodRiskOrder.FloodDetStatus.Value == FloodDeterminationStatus.Completed)
             {
-                DownloadUrl = "#",
-                Title = "Flood Certificate",
-                AltText = "Flood Certificate"
-            };
+                this.ShowDownloadLink = true;
+                this.MainDownloadLink = new DownloadLink
+                {
+                    DownloadUrl = "#",
+                    Title = "Flood Certificate",
+                    AltText = "Flood Certificate"
+                };
+
+
+            }
+            else
+            {
+                this.ShowDownloadLink = false;
+            }
+
             this.DownloadLinks = new List<DownloadLink>();
-            this.DownloadLinks.Add(this.MainDownloadLink);
 
     }
     }

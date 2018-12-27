@@ -3,7 +3,7 @@
     import fld = DocumentRow.Fields;
 
     @Serenity.Decorators.registerClass()
-    //@Serenity.Decorators.filterable()
+    @Serenity.Decorators.filterable()
 
     export class DocumentGrid extends Serenity.EntityGrid<Flood.DocumentRow, any> {
 
@@ -25,14 +25,21 @@
          */
         protected onViewProcessData(response: Serenity.ListResponse<Flood.DocumentRow>) {
             response = super.onViewProcessData(response);
-
-            // there is no __id property in CustomerGrossSalesRow but 
-            // this is javascript and we can set any property of an object
-            //for (var x of response.Entities) {
-            //    (x as any).__id = this.nextId++;
-            //}
             return response;
         }
+
+        protected getQuickFilters() {
+            var filters = super.getQuickFilters();
+            return filters;
+        }
+        protected createQuickFilters() {
+            super.createQuickFilters();
+
+            //this.orderStatusFilter = this.findQuickFilter(Serenity.EnumEditor, fld.FloodOrderStatus);
+        }
+
+
+        protected createQuickSearchInput() { };
 
         protected getColumns() {
             var columns = super.getColumns();
@@ -40,7 +47,7 @@
             columns.splice(1, 0, {
                 field: 'Print Document',
                 name: '',
-                format: ctx => '<a class="document-link print-document" title="printdocument">' +
+                format: ctx => '<a class="document-link inline-action" title="printdocument">' +
                     '<i class="fa fa-file-pdf-o text-red"></i></a>',
                 width: 24,
                 minWidth: 24,
@@ -77,57 +84,6 @@
                 });
             }
 
-        }
-
-
-        protected getButtons() {
-            var buttons = [];
-
-            //buttons.push(Common.PdfExportHelper.createToolButton({
-            //    grid: this,
-            //    onViewSubmit: () => this.onViewSubmit()
-            //}));
-
-
-            buttons.push({
-                title: 'Upload Document', cssClass: 'add-document-button',
-                onClick: () => {
-                    // we could use EditItem here too, but for demonstration
-                    // purposes we are manually creating dialog this time
-                    var dlg = new Flood.DocumentImportDialog();
-
-                    // let grid watch for changes to manually created dialog, 
-                    // so when a new item is saved, grid can refresh itself
-                    this.initDialog(dlg);
-
-                    dlg.loadEntityAndOpenDialog(<Flood.DocumentRow>{
-                        OrderId: 'cfd96059-adbb-e811-a965-000d3a32c8b8'
-                    });
-                }
-            });
-
-
-            return buttons;
-        }
-
-        protected createSlickGrid() {
-            var grid = super.createSlickGrid();
-
-            //// need to register this plugin for grouping or you'll have errors
-            //grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
-
-            //this.view.setSummaryOptions({
-            //    aggregators: [
-            //        new Slick.Aggregators.Sum('GrossAmount')
-            //    ]
-            //});
-
-            //this.view.setGrouping(
-            //    [{
-            //        getter: 'ContactName'
-            //    }]);
-
-            return grid;
         }
 
         protected getSlickOptions() {

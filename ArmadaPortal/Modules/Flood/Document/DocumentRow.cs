@@ -71,6 +71,13 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.ModifiedDate[this] = value; }
         }
 
+        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100)]
+        [MultipleFileUploadEditor(FilenameFormat = "OrderDocument/~", CopyToHistory = true)]
+        public String UploadDocument
+        {
+            get { return Fields.UploadDocument[this]; }
+            set { Fields.UploadDocument[this] = value; }
+        }
 
         IIdField IIdRow.IdField
         {
@@ -97,6 +104,7 @@ namespace ArmadaPortal.Flood.Entities
             public StringField DocumentTitle;
             public StringField DocumentName;
             public StringField DocumentUrl;
+            public StringField UploadDocument;
             public DateTimeField InsertDate;
             public DateTimeField ModifiedDate;
         }

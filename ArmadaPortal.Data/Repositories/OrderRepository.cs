@@ -560,6 +560,36 @@ namespace ArmadaPortal.Data.Repositories
             return returnAttachments;
         }
 
+        public string GetFloodDeterminationLetterIdForOrderId(Guid orderId)
+        {
+            var returnAttachmentId = String.Empty;
+
+            var documentHeader =
+                (from c in _xrm.FloodRiskOrderDocumentSet
+                 where c.FloodRiskOrder.Id == orderId
+                 && c.ShowinPortal == true
+                 && c.DocumentType.Value == DocumentType.FloodDeterminationLetter
+                 orderby c.ModifiedOn descending
+                 select c).FirstOrDefault();
+
+            if (documentHeader != null && !string.IsNullOrEmpty(documentHeader.Id.ToString()))
+            {
+                var documentAttachmentList =
+                    (from c in _xrm.AnnotationSet.Where(x => x.ObjectId.Id == documentHeader.Id && x.IsDocument == true)
+                     select c).FirstOrDefault();
+
+                if (documentAttachmentList != null && !string.IsNullOrEmpty(documentAttachmentList.Id.ToString()))
+                {
+                    returnAttachmentId = documentAttachmentList.Id.ToString();
+                }
+            }
+
+            return returnAttachmentId;
+
+        }
+
+
+
         public AttachmentData GetFloodDeterminationLetterForOrderId(Guid orderId)
         {
             var returnAttachment = new AttachmentData();

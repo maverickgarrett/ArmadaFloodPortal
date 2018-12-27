@@ -488,8 +488,7 @@ var ArmadaPortal;
                 'List',
                 'Retrieve',
                 'Create',
-                'DocumentImport',
-                'CreateDocument'
+                'DocumentImport'
             ].forEach(function (x) {
                 DocumentService[x] = function (r, s, o) {
                     return Q.serviceRequest(DocumentService.baseUrl + '/' + x, r, s, o);
@@ -760,7 +759,7 @@ var ArmadaPortal;
 (function (ArmadaPortal) {
     var Texts;
     (function (Texts) {
-        ArmadaPortal['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleName: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, AdministrationClient: { ClientUser: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 } }, Common: { UserPreference: { Name: 1, PreferenceType: 1, UserId: 1, UserPreferenceId: 1, Value: 1 } }, Flood: { Branch: { BranchAbbrev: 1, BranchId: 1, BranchName: 1 }, Document: { DocumentId: 1, DocumentName: 1, DocumentTitle: 1, DocumentType: 1, DocumentUrl: 1, InsertDate: 1, ModifiedDate: 1, OrderId: 1 }, FloodOrder: { Address1Matched: 1, Address1Orig: 1, Address2Matched: 1, Address2Orig: 1, AddressEnteredFormatted: 1, AddressMatchedFormatted: 1, ApprovalLetter: 1, Borrower: 1, Borrower2: 1, BranchAbbrev: 1, BranchId: 1, BranchName: 1, CityMatched: 1, CityOrig: 1, EmailCertCC: 1, EmailCertTo: 1, FloodOrderStatus: 1, FloodOrderStatusDate: 1, FloodOrderStatusDescription: 1, FloodZone: 1, InsertDate: 1, IsUrgent: 1, LoanNumber: 1, LoanType: 1, ModifiedDate: 1, NoteToAnalyst: 1, OrderAccountId: 1, OrderAccountName: 1, OrderContactId: 1, OrderContactName: 1, OrderCreatedById: 1, OrderCreatedByName: 1, OrderDate: 1, OrderId: 1, OrderNumber: 1, OrderType: 1, ParcelNumber: 1, StateMatched: 1, StateOrig: 1, UploadDocument: 1, UploadDocumentFileName: 1, ZipMatched: 1, ZipOrig: 1 } }, _Ext: { AuditLog: { ActionDate: 1, ActionType: 1, EntityId: 1, EntityTableName: 1, Id: 1, IpAddress: 1, NewEntity: 1, OldEntity: 1, SessionId: 1, UserId: 1, VersionNo: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, FormTitle: 1, GoogleButton: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { ArmadaFloodPhoneOrder: 1, ArmadaFloodPhoneOrderMultiple: 1, AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
+        ArmadaPortal['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleName: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, AdministrationClient: { ClientUser: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 } }, Common: { UserPreference: { Name: 1, PreferenceType: 1, UserId: 1, UserPreferenceId: 1, Value: 1 } }, Flood: { Branch: { BranchAbbrev: 1, BranchId: 1, BranchName: 1 }, Document: { DocumentId: 1, DocumentName: 1, DocumentTitle: 1, DocumentType: 1, DocumentUrl: 1, InsertDate: 1, ModifiedDate: 1, OrderId: 1, UploadDocument: 1 }, FloodOrder: { Address1Matched: 1, Address1Orig: 1, Address2Matched: 1, Address2Orig: 1, AddressEnteredFormatted: 1, AddressMatchedFormatted: 1, ApprovalLetter: 1, Borrower: 1, Borrower2: 1, BranchAbbrev: 1, BranchId: 1, BranchName: 1, CityMatched: 1, CityOrig: 1, EmailCertCC: 1, EmailCertTo: 1, FloodOrderStatus: 1, FloodOrderStatusDate: 1, FloodOrderStatusDescription: 1, FloodZone: 1, InsertDate: 1, IsUrgent: 1, LoanNumber: 1, LoanType: 1, ModifiedDate: 1, NoteToAnalyst: 1, OrderAccountId: 1, OrderAccountName: 1, OrderContactId: 1, OrderContactName: 1, OrderCreatedById: 1, OrderCreatedByName: 1, OrderDate: 1, OrderId: 1, OrderNumber: 1, OrderType: 1, ParcelNumber: 1, ShowDownloadLink: 1, ShowDownloadLinkId: 1, StateMatched: 1, StateOrig: 1, UploadDocument: 1, UploadDocumentFileName: 1, ZipMatched: 1, ZipOrig: 1 } }, _Ext: { AuditLog: { ActionDate: 1, ActionType: 1, EntityId: 1, EntityTableName: 1, Id: 1, IpAddress: 1, NewEntity: 1, OldEntity: 1, SessionId: 1, UserId: 1, VersionNo: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, FormTitle: 1, GoogleButton: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { ArmadaFloodPhoneOrder: 1, ArmadaFloodPhoneOrderMultiple: 1, AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
     })(Texts = ArmadaPortal.Texts || (ArmadaPortal.Texts = {}));
 })(ArmadaPortal || (ArmadaPortal = {}));
 var _Ext;
@@ -938,6 +937,40 @@ var _Ext;
     })(TimeUoM = _Ext.TimeUoM || (_Ext.TimeUoM = {}));
     Serenity.Decorators.registerEnumType(TimeUoM, '_Ext.TimeUoM', 'TimeUoM');
 })(_Ext || (_Ext = {}));
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var LanguageList;
+    (function (LanguageList) {
+        function getValue() {
+            var result = [];
+            for (var _i = 0, _a = ArmadaPortal.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
+                var k = _a[_i];
+                if (k.LanguageId !== 'en') {
+                    result.push([k.Id.toString(), k.LanguageName]);
+                }
+            }
+            return result;
+        }
+        LanguageList.getValue = getValue;
+    })(LanguageList = ArmadaPortal.LanguageList || (ArmadaPortal.LanguageList = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
+/// <reference path="../Common/Helpers/LanguageList.ts" />
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var ScriptInitialization;
+    (function (ScriptInitialization) {
+        Q.Config.responsiveDialogs = true;
+        Q.Config.rootNamespaces.push('ArmadaPortal');
+        Serenity.EntityDialog.defaultLanguageList = ArmadaPortal.LanguageList.getValue;
+        Serenity.DataGrid.defaultPersistanceStorage = window.sessionStorage;
+        //Serenity.DataGrid.defaultPersistanceStorage = window.localStorage;
+        if ($.fn['colorbox']) {
+            $.fn['colorbox'].settings.maxWidth = "95%";
+            $.fn['colorbox'].settings.maxHeight = "95%";
+        }
+        window.onerror = Q.ErrorHandling.runtimeErrorHandler;
+    })(ScriptInitialization = ArmadaPortal.ScriptInitialization || (ArmadaPortal.ScriptInitialization = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
 var ArmadaPortal;
 (function (ArmadaPortal) {
     var Administration;
@@ -1408,22 +1441,6 @@ var ArmadaPortal;
         }(Serenity.EntityGrid));
         Administration.UserGrid = UserGrid;
     })(Administration = ArmadaPortal.Administration || (ArmadaPortal.Administration = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var Authorization;
-    (function (Authorization) {
-        Object.defineProperty(Authorization, 'userDefinition', {
-            get: function () {
-                return Q.getRemoteData('UserData');
-            }
-        });
-        function hasPermission(permissionKey) {
-            var ud = Authorization.userDefinition;
-            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
-        }
-        Authorization.hasPermission = hasPermission;
-    })(Authorization = ArmadaPortal.Authorization || (ArmadaPortal.Authorization = {}));
 })(ArmadaPortal || (ArmadaPortal = {}));
 var ArmadaPortal;
 (function (ArmadaPortal) {
@@ -1972,40 +1989,6 @@ var ArmadaPortal;
         }(Serenity.EntityGrid));
         AdministrationClient.ClientUserGrid = ClientUserGrid;
     })(AdministrationClient = ArmadaPortal.AdministrationClient || (ArmadaPortal.AdministrationClient = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var LanguageList;
-    (function (LanguageList) {
-        function getValue() {
-            var result = [];
-            for (var _i = 0, _a = ArmadaPortal.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
-                var k = _a[_i];
-                if (k.LanguageId !== 'en') {
-                    result.push([k.Id.toString(), k.LanguageName]);
-                }
-            }
-            return result;
-        }
-        LanguageList.getValue = getValue;
-    })(LanguageList = ArmadaPortal.LanguageList || (ArmadaPortal.LanguageList = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-/// <reference path="../Common/Helpers/LanguageList.ts" />
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var ScriptInitialization;
-    (function (ScriptInitialization) {
-        Q.Config.responsiveDialogs = true;
-        Q.Config.rootNamespaces.push('ArmadaPortal');
-        Serenity.EntityDialog.defaultLanguageList = ArmadaPortal.LanguageList.getValue;
-        Serenity.DataGrid.defaultPersistanceStorage = window.sessionStorage;
-        //Serenity.DataGrid.defaultPersistanceStorage = window.localStorage;
-        if ($.fn['colorbox']) {
-            $.fn['colorbox'].settings.maxWidth = "95%";
-            $.fn['colorbox'].settings.maxHeight = "95%";
-        }
-        window.onerror = Q.ErrorHandling.runtimeErrorHandler;
-    })(ScriptInitialization = ArmadaPortal.ScriptInitialization || (ArmadaPortal.ScriptInitialization = {}));
 })(ArmadaPortal || (ArmadaPortal = {}));
 var ArmadaPortal;
 (function (ArmadaPortal) {
@@ -3238,19 +3221,24 @@ var ArmadaPortal;
              */
             DocumentGrid.prototype.onViewProcessData = function (response) {
                 response = _super.prototype.onViewProcessData.call(this, response);
-                // there is no __id property in CustomerGrossSalesRow but 
-                // this is javascript and we can set any property of an object
-                //for (var x of response.Entities) {
-                //    (x as any).__id = this.nextId++;
-                //}
                 return response;
             };
+            DocumentGrid.prototype.getQuickFilters = function () {
+                var filters = _super.prototype.getQuickFilters.call(this);
+                return filters;
+            };
+            DocumentGrid.prototype.createQuickFilters = function () {
+                _super.prototype.createQuickFilters.call(this);
+                //this.orderStatusFilter = this.findQuickFilter(Serenity.EnumEditor, fld.FloodOrderStatus);
+            };
+            DocumentGrid.prototype.createQuickSearchInput = function () { };
+            ;
             DocumentGrid.prototype.getColumns = function () {
                 var columns = _super.prototype.getColumns.call(this);
                 columns.splice(1, 0, {
                     field: 'Print Document',
                     name: '',
-                    format: function (ctx) { return '<a class="document-link print-document" title="printdocument">' +
+                    format: function (ctx) { return '<a class="document-link inline-action" title="printdocument">' +
                         '<i class="fa fa-file-pdf-o text-red"></i></a>'; },
                     width: 24,
                     minWidth: 24,
@@ -3278,44 +3266,6 @@ var ArmadaPortal;
                     });
                 }
             };
-            DocumentGrid.prototype.getButtons = function () {
-                var _this = this;
-                var buttons = [];
-                //buttons.push(Common.PdfExportHelper.createToolButton({
-                //    grid: this,
-                //    onViewSubmit: () => this.onViewSubmit()
-                //}));
-                buttons.push({
-                    title: 'Upload Document', cssClass: 'add-document-button',
-                    onClick: function () {
-                        // we could use EditItem here too, but for demonstration
-                        // purposes we are manually creating dialog this time
-                        var dlg = new Flood.DocumentImportDialog();
-                        // let grid watch for changes to manually created dialog, 
-                        // so when a new item is saved, grid can refresh itself
-                        _this.initDialog(dlg);
-                        dlg.loadEntityAndOpenDialog({
-                            OrderId: 'cfd96059-adbb-e811-a965-000d3a32c8b8'
-                        });
-                    }
-                });
-                return buttons;
-            };
-            DocumentGrid.prototype.createSlickGrid = function () {
-                var grid = _super.prototype.createSlickGrid.call(this);
-                //// need to register this plugin for grouping or you'll have errors
-                //grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
-                //this.view.setSummaryOptions({
-                //    aggregators: [
-                //        new Slick.Aggregators.Sum('GrossAmount')
-                //    ]
-                //});
-                //this.view.setGrouping(
-                //    [{
-                //        getter: 'ContactName'
-                //    }]);
-                return grid;
-            };
             DocumentGrid.prototype.getSlickOptions = function () {
                 var opt = _super.prototype.getSlickOptions.call(this);
                 opt.showFooterRow = true;
@@ -3325,8 +3275,8 @@ var ArmadaPortal;
                 return false;
             };
             DocumentGrid = __decorate([
-                Serenity.Decorators.registerClass()
-                //@Serenity.Decorators.filterable()
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
             ], DocumentGrid);
             return DocumentGrid;
         }(Serenity.EntityGrid));
@@ -3364,7 +3314,7 @@ var ArmadaPortal;
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "localization-button"; }), 1);
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "clone-button"; }), 1);
                 var saveButton = {
-                    title: Q.text("Submit Order"),
+                    title: Q.text("Submit Document"),
                     cssClass: 'save-and-close-button',
                     onClick: function () {
                         if (!_this.validateForm()) {
@@ -3372,18 +3322,18 @@ var ArmadaPortal;
                         }
                         Q.defaultNotifyOptions.positionClass = "toast-top-center";
                         Q.defaultNotifyOptions.newestOnTop = false;
-                        Q.notifyWarning(Q.text("Order is being submitted"), Q.text("Flood Order"));
+                        Q.notifyWarning(Q.text("Document is being submitted"), Q.text("Flood Document"));
                         var saveEntity = _this.getSaveEntity();
                         // *** Here we actually call the endpoint ***
-                        var servicecall = Flood.DocumentService.CreateDocument({
+                        var servicecall = Flood.DocumentService.Create({
                             OrderId: saveEntity.OrderId,
-                            UploadDocument: UploadDocument, saveEntity: .UploadDocument
+                            UploadDocument: saveEntity.UploadDocument
                         }, function (response) {
                             var options = Q.defaultNotifyOptions;
                             options.tapToDismiss = true;
                             _this.dialogClose();
                             var message = JSON.parse(servicecall.responseText);
-                            Q.notifySuccess(message, Q.text("Flood Order"), options);
+                            Q.notifySuccess(message, Q.text("Flood Order Document"), options);
                         }, {
                             blockUI: true,
                             onError: function (response) {
@@ -3391,7 +3341,7 @@ var ArmadaPortal;
                                 options.timeOut = 15000;
                                 options.extendedTimeOut = 3000;
                                 _this.dialogClose();
-                                Q.notifyError(Q.text("Flood Order Error"), Q.text("Flood Order Save Error"), options);
+                                Q.notifyError(Q.text("Flood Order Document Error"), Q.text("Flood Order Document Save Error"), options);
                                 var errorcontent = JSON.parse(servicecall.responseText);
                                 var message = errorcontent["Error"]["Message"];
                                 Q.alert(message);
@@ -3406,20 +3356,8 @@ var ArmadaPortal;
                         _this.dialogClose();
                     }
                 };
-                var letterButton = {
-                    title: Q.text("Determination Letter Download"),
-                    cssClass: 'export-pdf-button',
-                    onClick: function () {
-                        Q.postToUrl({
-                            url: '~/FloodReport/GetFloodOrderDeterminationLetter/?orderId=' + _this.get_entityId(),
-                            params: {},
-                            target: '_blank'
-                        });
-                    }
-                };
                 buttons.push(saveButton);
                 buttons.push(cancelButton);
-                buttons.push(letterButton);
                 return buttons;
             };
             DocumentImportDialog.prototype.getDialogButtons = function () {
@@ -3491,6 +3429,7 @@ var ArmadaPortal;
                 _this.form = new Flood.FloodOrderForm(_this.idPrefix);
                 //this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
                 _this.documentsGrid = new Flood.FloodOrderDocumentsGrid(_this.byId('DocumentsGrid'));
+                _this.documentsGrid.openDialogsAsPanel = false;
                 ArmadaPortal.DialogUtils.pendingChangesConfirmation(_this.element, function () { return _this.getSaveState() != _this.loadedState; });
                 return _this;
             }
@@ -3506,11 +3445,6 @@ var ArmadaPortal;
             };
             FloodOrderDialog.prototype.afterLoadEntity = function () {
                 _super.prototype.afterLoadEntity.call(this);
-                // these fields are only required in new record mode
-                //this.form.Password.element.toggleClass('required', this.isNew())
-                //    .closest('.field').find('sup').toggle(this.isNew());
-                //this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
-                //    .closest('.field').find('sup').toggle(this.isNew());
             };
             FloodOrderDialog.prototype.getToolbarButtons = function () {
                 var _this = this;
@@ -3594,11 +3528,6 @@ var ArmadaPortal;
                 buttons.push(letterButton);
                 return buttons;
             };
-            FloodOrderDialog.prototype.setOrderDetails = function (details) {
-                this.form.OrderCreatedByName.value = "Ally Master";
-                this.form.OrderAccountId.value = "cfd96059-adbb-e811-a965-000d3a32c8b8";
-                this.form.BranchId.value = "21ad0673-adbb-e811-a965-000d3a32c8b8";
-            };
             FloodOrderDialog.prototype.getSaveState = function () {
                 try {
                     return $.toJSON(this.getSaveEntity());
@@ -3661,28 +3590,6 @@ var ArmadaPortal;
         Flood.FloodOrderDialog = FloodOrderDialog;
     })(Flood = ArmadaPortal.Flood || (ArmadaPortal.Flood = {}));
 })(ArmadaPortal || (ArmadaPortal = {}));
-/// <reference path="../Document/DocumentImportDialog.ts" />
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var Flood;
-    (function (Flood) {
-        var FloodOrderDocumentDialog = /** @class */ (function (_super) {
-            __extends(FloodOrderDocumentDialog, _super);
-            function FloodOrderDocumentDialog() {
-                return _super.call(this) || this;
-            }
-            FloodOrderDocumentDialog.prototype.updateInterface = function () {
-                //super.updateInterface();
-                //Serenity.EditorUtils.setReadOnly(this.form.CustomerID, true);
-            };
-            FloodOrderDocumentDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], FloodOrderDocumentDialog);
-            return FloodOrderDocumentDialog;
-        }(Flood.DocumentImportDialog));
-        Flood.FloodOrderDocumentDialog = FloodOrderDocumentDialog;
-    })(Flood = ArmadaPortal.Flood || (ArmadaPortal.Flood = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
 /// <reference path="../Document/DocumentGrid.ts" />
 var ArmadaPortal;
 (function (ArmadaPortal) {
@@ -3694,15 +3601,48 @@ var ArmadaPortal;
                 return _super.call(this, container) || this;
             }
             FloodOrderDocumentsGrid.prototype.getColumns = function () {
-                //return super.getColumns().filter(x => x.field !== fld.CustomerCompanyName);
                 return _super.prototype.getColumns.call(this);
             };
             FloodOrderDocumentsGrid.prototype.initEntityDialog = function (itemType, dialog) {
                 _super.prototype.initEntityDialog.call(this, itemType, dialog);
                 Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
             };
+            FloodOrderDocumentsGrid.prototype.getButtons = function () {
+                //buttons.push(Common.PdfExportHelper.createToolButton({
+                //    grid: this,
+                //    onViewSubmit: () => this.onViewSubmit()
+                //}));
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                // *** Remove default buttons ***
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
+                //buttons.splice(Q.indexOf(buttons, x => x.cssClass == "save-and-close-button"), 1);
+                //buttons.splice(Q.indexOf(buttons, x => x.cssClass == "apply-changes-button"), 1);
+                //buttons.splice(Q.indexOf(buttons, x => x.cssClass == "delete-button"), 1);
+                //buttons.splice(Q.indexOf(buttons, x => x.cssClass == "undo-delete-button"), 1);
+                //buttons.splice(Q.indexOf(buttons, x => x.cssClass == "localization-button"), 1);
+                //buttons.splice(Q.indexOf(buttons, x => x.cssClass == "clone-button"), 1);
+                buttons.push({
+                    title: 'Upload Document', cssClass: 'add-button',
+                    onClick: function () {
+                        // we could use EditItem here too, but for demonstration
+                        // purposes we are manually creating dialog this time
+                        var dialog = new Flood.DocumentImportDialog();
+                        // let grid watch for changes to manually created dialog, 
+                        // so when a new item is saved, grid can refresh itself
+                        dialog.element.bind('dialogclose', function () {
+                            // *** This is triggered after closing dialog ***
+                            _this.refresh();
+                        });
+                        dialog.loadEntityAndOpenDialog({
+                            OrderId: _this.orderId
+                        });
+                    }
+                });
+                return buttons;
+            };
             FloodOrderDocumentsGrid.prototype.addButtonClick = function () {
-                this.editItem({ orderId: this.orderId });
+                this.editItem({ OrderId: this.orderId });
             };
             FloodOrderDocumentsGrid.prototype.getInitialTitle = function () {
                 return null;
@@ -3717,7 +3657,7 @@ var ArmadaPortal;
                 set: function (value) {
                     if (this._orderId !== value) {
                         this._orderId = value;
-                        this.setEquality('orderId', value);
+                        this.setEquality('OrderId', value);
                         this.refresh();
                     }
                 },
@@ -3751,22 +3691,6 @@ var ArmadaPortal;
                 _super.prototype.initEntityDialog.call(this, itemType, dialog);
                 Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
             };
-            FloodOrderGrid.prototype.getQuickFilters = function () {
-                var filters = _super.prototype.getQuickFilters.call(this);
-                //filters.push({
-                //    type: Serenity.LookupEditor,
-                //    options: {
-                //        lookupKey: ProductRow.lookupKey
-                //    },
-                //    field: 'ProductID',
-                //    title: 'Contains Product in Details',
-                //    handler: w => {
-                //        (this.view.params as OrderListRequest).ProductID = Q.toId(w.value);
-                //    },
-                //    cssClass: 'hidden-xs'
-                //});
-                return filters;
-            };
             FloodOrderGrid.prototype.createQuickFilters = function () {
                 _super.prototype.createQuickFilters.call(this);
                 this.orderStatusFilter = this.findQuickFilter(Serenity.EnumEditor, "FloodOrderStatus" /* FloodOrderStatus */);
@@ -3777,7 +3701,7 @@ var ArmadaPortal;
                 //Remove Default Add Button
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
                 buttons.push({
-                    title: 'Add New Order', cssClass: 'add-document-button',
+                    title: 'Add New Order', cssClass: 'add-button',
                     onClick: function () {
                         // we could use EditItem here too, but for demonstration
                         // purposes we are manually creating dialog this time
@@ -3785,6 +3709,10 @@ var ArmadaPortal;
                         // let grid watch for changes to manually created dialog, 
                         // so when a new item is saved, grid can refresh itself
                         _this.initDialog(dlg);
+                        dlg.element.bind('dialogclose', function () {
+                            // *** This is triggered after closing dialog ***
+                            _this.refresh();
+                        });
                         dlg.loadEntityAndOpenDialog({
                             OrderAccountId: 'cfd96059-adbb-e811-a965-000d3a32c8b8',
                             OrderAccountName: 'Alley Bank',
@@ -3808,7 +3736,7 @@ var ArmadaPortal;
             };
             FloodOrderGrid.prototype.getSlickOptions = function () {
                 var opt = _super.prototype.getSlickOptions.call(this);
-                opt.showFooterRow = true;
+                opt.showFooterRow = false;
                 //opt.rowHeight = 250;
                 return opt;
             };
@@ -3995,183 +3923,6 @@ var ArmadaPortal;
         }(Serenity.StringEditor));
         Flood.PhoneEditor = PhoneEditor;
     })(Flood = ArmadaPortal.Flood || (ArmadaPortal.Flood = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var Membership;
-    (function (Membership) {
-        var ChangePasswordPanel = /** @class */ (function (_super) {
-            __extends(ChangePasswordPanel, _super);
-            function ChangePasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
-                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
-                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
-                    }
-                });
-                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
-                        return Q.text('Validation.PasswordConfirm');
-                    }
-                });
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ChangePassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
-            ChangePasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ChangePasswordPanel);
-            return ChangePasswordPanel;
-        }(Serenity.PropertyPanel));
-        Membership.ChangePasswordPanel = ChangePasswordPanel;
-    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var Membership;
-    (function (Membership) {
-        var ForgotPasswordPanel = /** @class */ (function (_super) {
-            __extends(ForgotPasswordPanel, _super);
-            function ForgotPasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ForgotPassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
-            ForgotPasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ForgotPasswordPanel);
-            return ForgotPasswordPanel;
-        }(Serenity.PropertyPanel));
-        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
-    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var Membership;
-    (function (Membership) {
-        var ResetPasswordPanel = /** @class */ (function (_super) {
-            __extends(ResetPasswordPanel, _super);
-            function ResetPasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ResetPasswordForm(_this.idPrefix);
-                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmPassword.value.length < 7) {
-                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
-                    }
-                });
-                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
-                        return Q.text('Validation.PasswordConfirm');
-                    }
-                });
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    request.Token = _this.byId('Token').val();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ResetPassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ResetPassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/Account/Login');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
-            ResetPasswordPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ResetPasswordPanel);
-            return ResetPasswordPanel;
-        }(Serenity.PropertyPanel));
-        Membership.ResetPasswordPanel = ResetPasswordPanel;
-    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
-})(ArmadaPortal || (ArmadaPortal = {}));
-var ArmadaPortal;
-(function (ArmadaPortal) {
-    var Membership;
-    (function (Membership) {
-        var SignUpPanel = /** @class */ (function (_super) {
-            __extends(SignUpPanel, _super);
-            function SignUpPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.SignUpForm(_this.idPrefix);
-                _this.form.ConfirmEmail.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmEmail.value !== _this.form.Email.value) {
-                        return Q.text('Validation.EmailConfirm');
-                    }
-                });
-                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmPassword.value !== _this.form.Password.value) {
-                        return Q.text('Validation.PasswordConfirm');
-                    }
-                });
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/SignUp'),
-                        request: {
-                            Email: _this.form.Email.value,
-                            Password: _this.form.Password.value
-                        },
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.SignUp.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
-            SignUpPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], SignUpPanel);
-            return SignUpPanel;
-        }(Serenity.PropertyPanel));
-        Membership.SignUpPanel = SignUpPanel;
-    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
 })(ArmadaPortal || (ArmadaPortal = {}));
 var _Ext;
 (function (_Ext) {
@@ -5211,110 +4962,6 @@ var _Ext;
 })(_Ext || (_Ext = {}));
 var _Ext;
 (function (_Ext) {
-    var ReplaceRowDialog = /** @class */ (function (_super) {
-        __extends(ReplaceRowDialog, _super);
-        function ReplaceRowDialog(request, entityList) {
-            var _this = _super.call(this) || this;
-            _this.request = request;
-            _this.entityList = entityList;
-            _this.form = new _Ext.ReplaceRowForm(_this.idPrefix);
-            _this.dialogTitle = 'Replace Row';
-            _this.form.DeletedEntityName.value = request.DeletedEntityName;
-            _this.form.ReplaceWithEntityId.items = entityList.map(function (m) { return { id: String(m[request.IdProperty]), text: m[request.NameProperty], source: m }; });
-            return _this;
-        }
-        ReplaceRowDialog.prototype.getFormKey = function () { return _Ext.ReplaceRowForm.formKey; };
-        ReplaceRowDialog.prototype.getToolbarButtons = function () {
-            var _this = this;
-            var buttons = [];
-            _super.prototype.getToolbarButtons.call(this);
-            buttons.push({
-                title: 'Replace',
-                icon: 'fa fa fa-trash-o',
-                onClick: function () {
-                    if (_this.validateForm() == false)
-                        return;
-                    Q.confirm("Are you sure? \n\n" + _this.request.EntityTypeTitle + ": \"" + _this.request.DeletedEntityName + "\" will be deleted \nand all references will be replaced with \"" + _this.form.ReplaceWithEntityId.text + "\". \n\nThis action cannot be undone!\n\n", function () {
-                        _this.request.ReplaceWithEntityId = Q.toId(_this.form.ReplaceWithEntityId.value);
-                        Q.serviceRequest(Q.resolveUrl('~/Services/ReplaceRow/Replace'), _this.request, function (response) {
-                            _this.dialogClose();
-                            if (window['lastGrid']) //for single paged apps
-                                window['lastGrid'].refresh();
-                        });
-                    });
-                }
-            });
-            return buttons;
-        };
-        ReplaceRowDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.maximizable()
-        ], ReplaceRowDialog);
-        return ReplaceRowDialog;
-    }(_Ext.DialogBase));
-    _Ext.ReplaceRowDialog = ReplaceRowDialog;
-})(_Ext || (_Ext = {}));
-var _Ext;
-(function (_Ext) {
-    var DevTools;
-    (function (DevTools) {
-        var SergenPanel = /** @class */ (function (_super) {
-            __extends(SergenPanel, _super);
-            function SergenPanel(container) {
-                var _this = _super.call(this, container) || this;
-                var vm = new Vue({
-                    el: $('<div/>').appendTo(_this.element)[0],
-                    data: {
-                        connection: "",
-                        connections: [],
-                        tables: [],
-                        generate: {
-                            Row: true,
-                            Service: true,
-                            UI: true
-                        }
-                    },
-                    methods: {
-                        generateCode: function (table) {
-                            if (!table.Identifier) {
-                                Q.notifyError("Identifier cannot be empty!");
-                                return;
-                            }
-                            if (!table.Module) {
-                                Q.notifyError("Module cannot be empty!");
-                                return;
-                            }
-                            DevTools.SergenService.Generate({
-                                ConnectionKey: this.connection,
-                                Table: table,
-                                GenerateOptions: this.generate
-                            }, function (r) {
-                                Q.notifySuccess("Code for selected table is generated. You'll need to rebuild your project.");
-                            });
-                        }
-                    },
-                    watch: {
-                        connection: function (val) {
-                            if (!val || !val.length)
-                                vm.tables = [];
-                            else
-                                DevTools.SergenService.ListTables({
-                                    ConnectionKey: val
-                                }, function (response) { return vm.tables = response.Entities; });
-                        }
-                    },
-                    template: Q.getTemplate('_Ext.SergenPanel')
-                });
-                DevTools.SergenService.ListConnections({}, function (response) { return vm.connections = response.Entities; });
-                return _this;
-            }
-            return SergenPanel;
-        }(Serenity.Widget));
-        DevTools.SergenPanel = SergenPanel;
-    })(DevTools = _Ext.DevTools || (_Ext.DevTools = {}));
-})(_Ext || (_Ext = {}));
-var _Ext;
-(function (_Ext) {
     var AutoCompleteEditor = /** @class */ (function (_super) {
         __extends(AutoCompleteEditor, _super);
         function AutoCompleteEditor(input, options) {
@@ -5892,121 +5539,6 @@ var _Ext;
         return StaticTextBlock;
     }(Serenity.Widget));
     _Ext.StaticTextBlock = StaticTextBlock;
-})(_Ext || (_Ext = {}));
-var _Ext;
-(function (_Ext) {
-    var GridItemPickerDialog = /** @class */ (function (_super) {
-        __extends(GridItemPickerDialog, _super);
-        function GridItemPickerDialog(options) {
-            var _this = _super.call(this, options) || this;
-            _this.onSuccess = function (selectedItems) { };
-            var gridType = options.gridType;
-            if (!gridType.prototype)
-                gridType = Q.typeByFullName(options.gridType);
-            try {
-                _this.checkGrid = new gridType(_this.byId("RowSelectionCheckGrid"), options);
-                if (options.preSelectedKeys)
-                    _this.checkGrid.selectedKeys = options.preSelectedKeys;
-                _this.dialogTitle = "Select " + _this.checkGrid.getTitle();
-                _this.checkGrid.setTitle(null);
-                _this.checkGrid.pickerDialog = _this;
-            }
-            catch (ex) {
-                Q.notifyError('Could not intialize ' + options.gridType);
-            }
-            return _this;
-        }
-        GridItemPickerDialog.prototype.getTemplate = function () {
-            return "<div id=\"~_RowSelectionCheckGrid\" \n                class=\"RowSelectionCheckGrid " + (this.options.multiple == true ? 'multi-select' : 'single-select') + "\" \n                style = \"margin: 15px 15px 0 15px;\" >\n            </div>";
-        };
-        Object.defineProperty(GridItemPickerDialog.prototype, "selectedItems", {
-            get: function () { return this.checkGrid.selectedItems; },
-            enumerable: true,
-            configurable: true
-        });
-        GridItemPickerDialog.prototype.getDialogOptions = function () {
-            var _this = this;
-            var opt = _super.prototype.getDialogOptions.call(this);
-            opt.buttons = [{
-                    text: Q.text("Dialogs.OkButton"),
-                    click: function () {
-                        var selectedItems = _this.checkGrid.selectedItems;
-                        if (!selectedItems.length) {
-                            Q.notifyWarning("Please select some items!");
-                            return;
-                        }
-                        _this.onSuccess(selectedItems);
-                        _this.dialogClose();
-                    }
-                }, {
-                    text: Q.text("Dialogs.CancelButton"),
-                    click: function () {
-                        _this.dialogClose();
-                    }
-                }];
-            return opt;
-        };
-        GridItemPickerDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], GridItemPickerDialog);
-        return GridItemPickerDialog;
-    }(Serenity.TemplatedDialog));
-    _Ext.GridItemPickerDialog = GridItemPickerDialog;
-})(_Ext || (_Ext = {}));
-var _Ext;
-(function (_Ext) {
-    var GridItemPickerEditor = /** @class */ (function (_super) {
-        __extends(GridItemPickerEditor, _super);
-        function GridItemPickerEditor(container, options) {
-            var _this = _super.call(this, container, options) || this;
-            setTimeout(function () {
-                _this.element.find('.btn').click(function (e) {
-                    var pickerDialog = new _Ext.GridItemPickerDialog(options);
-                    pickerDialog.onSuccess = function (selectedItems) {
-                        _this.value = pickerDialog.checkGrid.rowSelection.getSelectedKeys().join(',');
-                        _this.text = selectedItems.map(function (m) { return m[options.nameFieldInGridRow]; }).join(', ');
-                    };
-                    pickerDialog.dialogOpen();
-                });
-            }, 500);
-            return _this;
-        }
-        GridItemPickerEditor.prototype.getTemplate = function () {
-            return "<div class=\"input-group\">\n                        <input type=\"hidden\" class=\"value\" />\n                        <input type=\"text\" class=\"form-control text\" disabled/>\n                          <span class=\"input-group-btn\">\n                            <button class=\"btn btn-default\" style=\"height: 27px; padding-top: 3px;\" type=\"button\"><i class=\"fa fa-search\"></i></button>\n                          </span>\n                    </div>";
-        };
-        ;
-        GridItemPickerEditor.prototype.getEditValue = function (property, target) { target[property.name] = this.value; };
-        GridItemPickerEditor.prototype.setEditValue = function (source, property) { this.value = source[property.name]; this.text = source[this.options.nameFieldInThisRow]; };
-        Object.defineProperty(GridItemPickerEditor.prototype, "value", {
-            get: function () {
-                var editVal = this.element.find('input.value').val();
-                return editVal;
-            },
-            set: function (val) {
-                this.element.find('input.value').val(val);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(GridItemPickerEditor.prototype, "text", {
-            get: function () {
-                var editVal = this.element.find('input.text').val();
-                return editVal;
-            },
-            set: function (val) {
-                this.element.find('input.text').val(val);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        GridItemPickerEditor = __decorate([
-            Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-            Serenity.Decorators.editor(),
-            Serenity.Decorators.element("<div/>")
-        ], GridItemPickerEditor);
-        return GridItemPickerEditor;
-    }(Serenity.TemplatedWidget));
-    _Ext.GridItemPickerEditor = GridItemPickerEditor;
 })(_Ext || (_Ext = {}));
 var _Ext;
 (function (_Ext) {
@@ -7602,4 +7134,416 @@ var q;
     //date time
     q.fiscalYearMonths = [6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5];
 })(q || (q = {}));
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var Authorization;
+    (function (Authorization) {
+        Object.defineProperty(Authorization, 'userDefinition', {
+            get: function () {
+                return Q.getRemoteData('UserData');
+            }
+        });
+        function hasPermission(permissionKey) {
+            var ud = Authorization.userDefinition;
+            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+        }
+        Authorization.hasPermission = hasPermission;
+    })(Authorization = ArmadaPortal.Authorization || (ArmadaPortal.Authorization = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var Membership;
+    (function (Membership) {
+        var ChangePasswordPanel = /** @class */ (function (_super) {
+            __extends(ChangePasswordPanel, _super);
+            function ChangePasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
+                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
+                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
+                    }
+                });
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ChangePassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
+            ChangePasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ChangePasswordPanel);
+            return ChangePasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ChangePasswordPanel = ChangePasswordPanel;
+    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var Membership;
+    (function (Membership) {
+        var ForgotPasswordPanel = /** @class */ (function (_super) {
+            __extends(ForgotPasswordPanel, _super);
+            function ForgotPasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ForgotPassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
+            ForgotPasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ForgotPasswordPanel);
+            return ForgotPasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
+    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var Membership;
+    (function (Membership) {
+        var ResetPasswordPanel = /** @class */ (function (_super) {
+            __extends(ResetPasswordPanel, _super);
+            function ResetPasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ResetPasswordForm(_this.idPrefix);
+                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value.length < 7) {
+                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
+                    }
+                });
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    request.Token = _this.byId('Token').val();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ResetPassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ResetPassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/Account/Login');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
+            ResetPasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ResetPasswordPanel);
+            return ResetPasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ResetPasswordPanel = ResetPasswordPanel;
+    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
+var ArmadaPortal;
+(function (ArmadaPortal) {
+    var Membership;
+    (function (Membership) {
+        var SignUpPanel = /** @class */ (function (_super) {
+            __extends(SignUpPanel, _super);
+            function SignUpPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.SignUpForm(_this.idPrefix);
+                _this.form.ConfirmEmail.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmEmail.value !== _this.form.Email.value) {
+                        return Q.text('Validation.EmailConfirm');
+                    }
+                });
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.Password.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/SignUp'),
+                        request: {
+                            Email: _this.form.Email.value,
+                            Password: _this.form.Password.value
+                        },
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.SignUp.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
+            SignUpPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SignUpPanel);
+            return SignUpPanel;
+        }(Serenity.PropertyPanel));
+        Membership.SignUpPanel = SignUpPanel;
+    })(Membership = ArmadaPortal.Membership || (ArmadaPortal.Membership = {}));
+})(ArmadaPortal || (ArmadaPortal = {}));
+var _Ext;
+(function (_Ext) {
+    var ReplaceRowDialog = /** @class */ (function (_super) {
+        __extends(ReplaceRowDialog, _super);
+        function ReplaceRowDialog(request, entityList) {
+            var _this = _super.call(this) || this;
+            _this.request = request;
+            _this.entityList = entityList;
+            _this.form = new _Ext.ReplaceRowForm(_this.idPrefix);
+            _this.dialogTitle = 'Replace Row';
+            _this.form.DeletedEntityName.value = request.DeletedEntityName;
+            _this.form.ReplaceWithEntityId.items = entityList.map(function (m) { return { id: String(m[request.IdProperty]), text: m[request.NameProperty], source: m }; });
+            return _this;
+        }
+        ReplaceRowDialog.prototype.getFormKey = function () { return _Ext.ReplaceRowForm.formKey; };
+        ReplaceRowDialog.prototype.getToolbarButtons = function () {
+            var _this = this;
+            var buttons = [];
+            _super.prototype.getToolbarButtons.call(this);
+            buttons.push({
+                title: 'Replace',
+                icon: 'fa fa fa-trash-o',
+                onClick: function () {
+                    if (_this.validateForm() == false)
+                        return;
+                    Q.confirm("Are you sure? \n\n" + _this.request.EntityTypeTitle + ": \"" + _this.request.DeletedEntityName + "\" will be deleted \nand all references will be replaced with \"" + _this.form.ReplaceWithEntityId.text + "\". \n\nThis action cannot be undone!\n\n", function () {
+                        _this.request.ReplaceWithEntityId = Q.toId(_this.form.ReplaceWithEntityId.value);
+                        Q.serviceRequest(Q.resolveUrl('~/Services/ReplaceRow/Replace'), _this.request, function (response) {
+                            _this.dialogClose();
+                            if (window['lastGrid']) //for single paged apps
+                                window['lastGrid'].refresh();
+                        });
+                    });
+                }
+            });
+            return buttons;
+        };
+        ReplaceRowDialog = __decorate([
+            Serenity.Decorators.registerClass(),
+            Serenity.Decorators.maximizable()
+        ], ReplaceRowDialog);
+        return ReplaceRowDialog;
+    }(_Ext.DialogBase));
+    _Ext.ReplaceRowDialog = ReplaceRowDialog;
+})(_Ext || (_Ext = {}));
+var _Ext;
+(function (_Ext) {
+    var DevTools;
+    (function (DevTools) {
+        var SergenPanel = /** @class */ (function (_super) {
+            __extends(SergenPanel, _super);
+            function SergenPanel(container) {
+                var _this = _super.call(this, container) || this;
+                var vm = new Vue({
+                    el: $('<div/>').appendTo(_this.element)[0],
+                    data: {
+                        connection: "",
+                        connections: [],
+                        tables: [],
+                        generate: {
+                            Row: true,
+                            Service: true,
+                            UI: true
+                        }
+                    },
+                    methods: {
+                        generateCode: function (table) {
+                            if (!table.Identifier) {
+                                Q.notifyError("Identifier cannot be empty!");
+                                return;
+                            }
+                            if (!table.Module) {
+                                Q.notifyError("Module cannot be empty!");
+                                return;
+                            }
+                            DevTools.SergenService.Generate({
+                                ConnectionKey: this.connection,
+                                Table: table,
+                                GenerateOptions: this.generate
+                            }, function (r) {
+                                Q.notifySuccess("Code for selected table is generated. You'll need to rebuild your project.");
+                            });
+                        }
+                    },
+                    watch: {
+                        connection: function (val) {
+                            if (!val || !val.length)
+                                vm.tables = [];
+                            else
+                                DevTools.SergenService.ListTables({
+                                    ConnectionKey: val
+                                }, function (response) { return vm.tables = response.Entities; });
+                        }
+                    },
+                    template: Q.getTemplate('_Ext.SergenPanel')
+                });
+                DevTools.SergenService.ListConnections({}, function (response) { return vm.connections = response.Entities; });
+                return _this;
+            }
+            return SergenPanel;
+        }(Serenity.Widget));
+        DevTools.SergenPanel = SergenPanel;
+    })(DevTools = _Ext.DevTools || (_Ext.DevTools = {}));
+})(_Ext || (_Ext = {}));
+var _Ext;
+(function (_Ext) {
+    var GridItemPickerDialog = /** @class */ (function (_super) {
+        __extends(GridItemPickerDialog, _super);
+        function GridItemPickerDialog(options) {
+            var _this = _super.call(this, options) || this;
+            _this.onSuccess = function (selectedItems) { };
+            var gridType = options.gridType;
+            if (!gridType.prototype)
+                gridType = Q.typeByFullName(options.gridType);
+            try {
+                _this.checkGrid = new gridType(_this.byId("RowSelectionCheckGrid"), options);
+                if (options.preSelectedKeys)
+                    _this.checkGrid.selectedKeys = options.preSelectedKeys;
+                _this.dialogTitle = "Select " + _this.checkGrid.getTitle();
+                _this.checkGrid.setTitle(null);
+                _this.checkGrid.pickerDialog = _this;
+            }
+            catch (ex) {
+                Q.notifyError('Could not intialize ' + options.gridType);
+            }
+            return _this;
+        }
+        GridItemPickerDialog.prototype.getTemplate = function () {
+            return "<div id=\"~_RowSelectionCheckGrid\" \n                class=\"RowSelectionCheckGrid " + (this.options.multiple == true ? 'multi-select' : 'single-select') + "\" \n                style = \"margin: 15px 15px 0 15px;\" >\n            </div>";
+        };
+        Object.defineProperty(GridItemPickerDialog.prototype, "selectedItems", {
+            get: function () { return this.checkGrid.selectedItems; },
+            enumerable: true,
+            configurable: true
+        });
+        GridItemPickerDialog.prototype.getDialogOptions = function () {
+            var _this = this;
+            var opt = _super.prototype.getDialogOptions.call(this);
+            opt.buttons = [{
+                    text: Q.text("Dialogs.OkButton"),
+                    click: function () {
+                        var selectedItems = _this.checkGrid.selectedItems;
+                        if (!selectedItems.length) {
+                            Q.notifyWarning("Please select some items!");
+                            return;
+                        }
+                        _this.onSuccess(selectedItems);
+                        _this.dialogClose();
+                    }
+                }, {
+                    text: Q.text("Dialogs.CancelButton"),
+                    click: function () {
+                        _this.dialogClose();
+                    }
+                }];
+            return opt;
+        };
+        GridItemPickerDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], GridItemPickerDialog);
+        return GridItemPickerDialog;
+    }(Serenity.TemplatedDialog));
+    _Ext.GridItemPickerDialog = GridItemPickerDialog;
+})(_Ext || (_Ext = {}));
+var _Ext;
+(function (_Ext) {
+    var GridItemPickerEditor = /** @class */ (function (_super) {
+        __extends(GridItemPickerEditor, _super);
+        function GridItemPickerEditor(container, options) {
+            var _this = _super.call(this, container, options) || this;
+            setTimeout(function () {
+                _this.element.find('.btn').click(function (e) {
+                    var pickerDialog = new _Ext.GridItemPickerDialog(options);
+                    pickerDialog.onSuccess = function (selectedItems) {
+                        _this.value = pickerDialog.checkGrid.rowSelection.getSelectedKeys().join(',');
+                        _this.text = selectedItems.map(function (m) { return m[options.nameFieldInGridRow]; }).join(', ');
+                    };
+                    pickerDialog.dialogOpen();
+                });
+            }, 500);
+            return _this;
+        }
+        GridItemPickerEditor.prototype.getTemplate = function () {
+            return "<div class=\"input-group\">\n                        <input type=\"hidden\" class=\"value\" />\n                        <input type=\"text\" class=\"form-control text\" disabled/>\n                          <span class=\"input-group-btn\">\n                            <button class=\"btn btn-default\" style=\"height: 27px; padding-top: 3px;\" type=\"button\"><i class=\"fa fa-search\"></i></button>\n                          </span>\n                    </div>";
+        };
+        ;
+        GridItemPickerEditor.prototype.getEditValue = function (property, target) { target[property.name] = this.value; };
+        GridItemPickerEditor.prototype.setEditValue = function (source, property) { this.value = source[property.name]; this.text = source[this.options.nameFieldInThisRow]; };
+        Object.defineProperty(GridItemPickerEditor.prototype, "value", {
+            get: function () {
+                var editVal = this.element.find('input.value').val();
+                return editVal;
+            },
+            set: function (val) {
+                this.element.find('input.value').val(val);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(GridItemPickerEditor.prototype, "text", {
+            get: function () {
+                var editVal = this.element.find('input.text').val();
+                return editVal;
+            },
+            set: function (val) {
+                this.element.find('input.text').val(val);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        GridItemPickerEditor = __decorate([
+            Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+            Serenity.Decorators.editor(),
+            Serenity.Decorators.element("<div/>")
+        ], GridItemPickerEditor);
+        return GridItemPickerEditor;
+    }(Serenity.TemplatedWidget));
+    _Ext.GridItemPickerEditor = GridItemPickerEditor;
+})(_Ext || (_Ext = {}));
 //# sourceMappingURL=ArmadaPortal.js.map

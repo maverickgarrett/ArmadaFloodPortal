@@ -7,8 +7,8 @@
         protected getLocalTextPrefix() { return DocumentRow.localTextPrefix; }
         protected getNameProperty() { return DocumentRow.nameProperty; }
         protected getService() { return DocumentService.baseUrl; }
-        private form = new DocumentImportForm(this.idPrefix);
 
+        private form = new DocumentImportForm(this.idPrefix);
         private loadedState: string;
 
         constructor() {
@@ -33,7 +33,7 @@
             buttons.splice(Q.indexOf(buttons, x => x.cssClass == "clone-button"), 1);
 
             var saveButton = {
-                title: Q.text("Submit Order"),
+                title: Q.text("Submit Document"),
                 cssClass: 'save-and-close-button',
                 onClick: () => {
 
@@ -43,23 +43,21 @@
 
                     Q.defaultNotifyOptions.positionClass = "toast-top-center";
                     Q.defaultNotifyOptions.newestOnTop = false;
-                    Q.notifyWarning(Q.text("Order is being submitted"), Q.text("Flood Order"));
+                    Q.notifyWarning(Q.text("Document is being submitted"), Q.text("Flood Document"));
 
                     var saveEntity = this.getSaveEntity();
                     // *** Here we actually call the endpoint ***
-                    var servicecall = DocumentService.CreateDocument(
+                    var servicecall = DocumentService.Create(
                         {
                             OrderId: saveEntity.OrderId,
-                            UploadDocument: 
                             UploadDocument: saveEntity.UploadDocument
                         }, response => { // *** Everything was ok on the endpoint, show it with a toast ***
                             let options: ToastrOptions = Q.defaultNotifyOptions;
                             options.tapToDismiss = true;
 
                             this.dialogClose();
-
                             var message = JSON.parse(servicecall.responseText);
-                            Q.notifySuccess(message, Q.text("Flood Order"), options);
+                            Q.notifySuccess(message, Q.text("Flood Order Document"), options);
                         },
                         {
                             blockUI: true,
@@ -69,7 +67,7 @@
                                 options.extendedTimeOut = 3000;
 
                                 this.dialogClose();
-                                Q.notifyError(Q.text("Flood Order Error"), Q.text("Flood Order Save Error"), options);
+                                Q.notifyError(Q.text("Flood Order Document Error"), Q.text("Flood Order Document Save Error"), options);
                                 var errorcontent = JSON.parse(servicecall.responseText);
 
                                 var message = errorcontent["Error"]["Message"]
@@ -93,23 +91,8 @@
 
             };
 
-            var letterButton = {
-                title: Q.text("Determination Letter Download"),
-                cssClass: 'export-pdf-button',
-                onClick: () => {
-                    Q.postToUrl({
-                        url: '~/FloodReport/GetFloodOrderDeterminationLetter/?orderId=' + this.get_entityId(),
-                        params: {
-                        },
-                        target: '_blank'
-                    });
-                }
-            };
-
-
             buttons.push(saveButton);
             buttons.push(cancelButton);
-            buttons.push(letterButton);
 
             return buttons;
         }
