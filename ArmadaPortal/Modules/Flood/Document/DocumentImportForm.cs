@@ -8,7 +8,7 @@
     public class DocumentImportForm
     {
         public string OrderId { get; set; }
-        [FileUploadEditor, Required]
-        public String FileName { get; set; }
+        [MultipleFileUploadEditor, Required]
+        public String UploadDocument { get; set; }
     }
 }

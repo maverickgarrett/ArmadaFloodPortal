@@ -67,53 +67,53 @@
                 Q.defaultNotifyOptions.newestOnTop = false;
                 Q.notifyWarning(Q.text("Order is being submitted"), Q.text("Flood Order"));
 
-                    var saveEntity = this.getSaveEntity();
+                var saveEntity = this.getSaveEntity();
                 // *** Here we actually call the endpoint ***
-                    var servicecall = FloodOrderService.Create(
-                        {
-                            IsUrgent: saveEntity.IsUrgent,
-                            //EmailCertTo: saveEntity.EmailCertTo,
-                            EmailCertCC: saveEntity.EmailCertCC,
-                            OrderType: saveEntity.OrderType,
-                            LoanType: saveEntity.LoanType,
-                            Borrower: saveEntity.Borrower,
-                            LoanNumber: saveEntity.LoanNumber,
-                            Address1Orig: saveEntity.Address1Orig,
-                            Address2Orig: saveEntity.Address2Orig,
-                            CityOrig: saveEntity.CityOrig,
-                            StateOrig: saveEntity.StateOrig,
-                            ZipOrig: saveEntity.ZipOrig,
-                            ParcelNumber: saveEntity.ParcelNumber,
-                            NoteToAnalyst: saveEntity.NoteToAnalyst,
-                            UploadDocument: saveEntity.UploadDocument
-                        }, response => { // *** Everything was ok on the endpoint, show it with a toast ***
+                var servicecall = FloodOrderService.Create(
+                    {
+                        IsUrgent: saveEntity.IsUrgent,
+                        //EmailCertTo: saveEntity.EmailCertTo,
+                        EmailCertCC: saveEntity.EmailCertCC,
+                        OrderType: saveEntity.OrderType,
+                        LoanType: saveEntity.LoanType,
+                        Borrower: saveEntity.Borrower,
+                        LoanNumber: saveEntity.LoanNumber,
+                        Address1Orig: saveEntity.Address1Orig,
+                        Address2Orig: saveEntity.Address2Orig,
+                        CityOrig: saveEntity.CityOrig,
+                        StateOrig: saveEntity.StateOrig,
+                        ZipOrig: saveEntity.ZipOrig,
+                        ParcelNumber: saveEntity.ParcelNumber,
+                        NoteToAnalyst: saveEntity.NoteToAnalyst,
+                        UploadDocument: saveEntity.UploadDocument
+                    }, response => { // *** Everything was ok on the endpoint, show it with a toast ***
+                        let options: ToastrOptions = Q.defaultNotifyOptions;
+                        options.tapToDismiss = true;
+
+                        this.dialogClose();
+
+                        var message = JSON.parse(servicecall.responseText);
+                        Q.notifySuccess(message, Q.text("Flood Order"), options);
+                    },
+                    {
+                        blockUI: true,
+                        onError: response => { // *** There was an error (exception) on the endpoint's side, show it with a toast ***
                             let options: ToastrOptions = Q.defaultNotifyOptions;
-                            options.tapToDismiss = true;
+                            options.timeOut = 15000;
+                            options.extendedTimeOut = 3000;
 
                             this.dialogClose();
+                            Q.notifyError(Q.text("Flood Order Error"), Q.text("Flood Order Save Error"), options);
+                            var errorcontent = JSON.parse(servicecall.responseText);
 
-                            var message = JSON.parse(servicecall.responseText);
-                            Q.notifySuccess(message, Q.text("Flood Order"), options);
-                        },
-                        {
-                            blockUI: true,
-                            onError: response => { // *** There was an error (exception) on the endpoint's side, show it with a toast ***
-                                let options: ToastrOptions = Q.defaultNotifyOptions;
-                                options.timeOut = 15000;
-                                options.extendedTimeOut = 3000;
+                            var message = errorcontent["Error"]["Message"]
 
-                                this.dialogClose();
-                                Q.notifyError(Q.text("Flood Order Error"), Q.text("Flood Order Save Error"), options);
-                                var errorcontent = JSON.parse(servicecall.responseText);
+                            Q.alert(message);
 
-                                var message = errorcontent["Error"]["Message"]
-
-                                Q.alert(message);
-
-                        },
-                        //onCleanup: () => this.serviceCallCleanup()
-                    });
-                }
+                    },
+                    //onCleanup: () => this.serviceCallCleanup()
+                });
+            }
 
             };
 
@@ -178,9 +178,6 @@
             // check that this is an insert
             if (this.isNew()) {
                 //Q.notifySuccess("Order Saved with ID: " + response.EntityId);
-
-                // you could also open a new dialog
-                // new Northwind.CategoryDialog().loadByIdAndOpenDialog(response.EntityId);
 
                 // but let's better load inserted record using Retrieve service
                 ArmadaPortal.Flood.FloodOrderService.Retrieve(<any>{

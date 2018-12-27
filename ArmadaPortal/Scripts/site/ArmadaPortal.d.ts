@@ -490,7 +490,8 @@ declare namespace ArmadaPortal.Common {
 }
 declare namespace ArmadaPortal {
     interface DocumentImportRequest extends Serenity.ServiceRequest {
-        FileName?: string;
+        OrderId?: string;
+        UploadDocument?: string;
     }
 }
 declare namespace ArmadaPortal {
@@ -546,7 +547,8 @@ declare namespace ArmadaPortal.Flood {
 }
 declare namespace ArmadaPortal.Flood {
     interface DocumentImportForm {
-        FileName: Serenity.ImageUploadEditor;
+        OrderId: Serenity.StringEditor;
+        UploadDocument: Serenity.MultipleImageUploadEditor;
     }
     class DocumentImportForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -569,6 +571,7 @@ declare namespace ArmadaPortal.Flood {
 }
 declare namespace ArmadaPortal.Flood {
     interface DocumentRow {
+        OrderId?: string;
         DocumentId?: string;
         DocumentType?: string;
         DocumentTitle?: string;
@@ -582,6 +585,7 @@ declare namespace ArmadaPortal.Flood {
         const nameProperty = "DocumentName";
         const localTextPrefix = "Flood.Document";
         const enum Fields {
+            OrderId = "OrderId",
             DocumentId = "DocumentId",
             DocumentType = "DocumentType",
             DocumentTitle = "DocumentTitle",
@@ -597,11 +601,15 @@ declare namespace ArmadaPortal.Flood {
         const baseUrl = "Flood/Document";
         function List(request: DocumentListRequest, onSuccess?: (response: Serenity.ListResponse<DocumentRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: DocumentRetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<DocumentRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Create(request: DocumentImportRequest, onSuccess?: (response: DocumentImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function DocumentImport(request: DocumentImportRequest, onSuccess?: (response: DocumentImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function CreateDocument(request: DocumentImportRequest, onSuccess?: (response: DocumentImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         const enum Methods {
             List = "Flood/Document/List",
             Retrieve = "Flood/Document/Retrieve",
-            DocumentImport = "Flood/Document/DocumentImport"
+            Create = "Flood/Document/Create",
+            DocumentImport = "Flood/Document/DocumentImport",
+            CreateDocument = "Flood/Document/CreateDocument"
         }
     }
 }
@@ -609,6 +617,7 @@ declare namespace ArmadaPortal.Flood {
 }
 declare namespace ArmadaPortal.Flood {
     enum FloodOrderDetStatusTypeEnum {
+        AllOrders = 0,
         Ordered = 100000000,
         Assigned = 100000001,
         Review = 100000002,
@@ -1653,6 +1662,7 @@ declare namespace ArmadaPortal.Flood {
         private loadedState;
         constructor();
         protected getDialogTitle(): string;
+        protected getToolbarButtons(): Serenity.ToolButton[];
         protected getDialogButtons(): Serenity.DialogButton[];
         getSaveState(): string;
         loadResponse(data: any): void;

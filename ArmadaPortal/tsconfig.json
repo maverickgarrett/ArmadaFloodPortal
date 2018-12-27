@@ -16,6 +16,6 @@
   "include": [
     "./Imports/",
     "./Modules/",
-    "./Scripts/typings/", "Views/Shared/TopNavigation.cshtml"
+    "./Scripts/typings/", "Views/Shared/TopNavigation.cshtml", "../ArmadaPortal.Core/Models/FloodOrderDocument.cs"
   ]
 }

@@ -74,11 +74,11 @@ namespace ArmadaPortal.Data.Repositories
             {
                 crmFloodOrder.Branch = new EntityReference(Account.EntityLogicalName, _branchId);
                 crmFloodOrder.UrgentIndicator = order.IsRush.HasValue ? order.IsRush : false;
-                crmFloodOrder.EmailCertTo = order.NotifyEmailTo;
+                //crmFloodOrder.EmailCertTo = order.NotifyEmailTo;
                 crmFloodOrder.EmailCertCC = order.NotifyEmailCC;
                 crmFloodOrder.FloodOrderContactId = new EntityReference(Contact.EntityLogicalName, _orderContactId);
                 crmFloodOrder.Borrower = order.Borrower;
-                crmFloodOrder.BorrowerNameAdditional = order.Borrower2;
+                //crmFloodOrder.BorrowerNameAdditional = order.Borrower2;
                 crmFloodOrder.LoanNumber = order.LoanNumber;
                 crmFloodOrder.AdditionalInformation = order.NotesToAnalyst;
                 _xrm.UpdateObject(crmFloodOrder);
@@ -89,7 +89,62 @@ namespace ArmadaPortal.Data.Repositories
 
         }
 
+        public Guid SaveDocument(FloodOrderDocument documentUpload)
+        {
+            var returnOrderId = documentUpload.OrderId.Value;
+            var returnDocumentId = Guid.NewGuid();
 
+            if (documentUpload.CustomerUploadFiles != null && documentUpload.CustomerUploadFiles.Count() > 0)
+            {
+                try
+                {
+                    var FloodDocumentAddition = new FloodRiskOrderDocument
+                    {
+                        Id = returnDocumentId,
+                        ShowinPortal = true,
+                        FloodRiskOrder = new EntityReference(FloodRiskOrder.EntityLogicalName, returnOrderId),
+                        DocumentType = DocumentType.CustomerUploaded,
+                        Name = "Customer Uploaded Documents"
+                    };
+
+                    _xrm.AddObject(FloodDocumentAddition);
+                    _xrm.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    var error = ex.InnerException;
+                    var errorMessage = ex.Message;
+                }
+
+                foreach (var doc in documentUpload.CustomerUploadFiles)
+                {
+                    var returnAnnotationId = Guid.NewGuid();
+
+                    try
+                    {
+                        var AttachmentAddition = new Annotation
+                        {
+                            Id = returnAnnotationId,
+                            IsDocument = true,
+                            MimeType = doc.FileContent.Meta.MimeType,
+                            ObjectId = new EntityReference(FloodRiskOrderDocument.EntityLogicalName, returnDocumentId),
+                            FileName = doc.FileContent.Meta.Name,
+                            DocumentBody = doc.FileContent.Data.Base64
+                        };
+
+                        _xrm.AddObject(AttachmentAddition);
+                        _xrm.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        var error = ex.InnerException;
+                        var errorMessage = ex.Message;
+                    }
+                }
+            }
+
+            return returnDocumentId;
+        }
 
         public Guid SaveCommit(FloodOrder order)
         {
@@ -203,8 +258,7 @@ namespace ArmadaPortal.Data.Repositories
         //Only Allow Certain fields to change on edit
         public FloodRiskOrder MapFloodOrderEditToCRMFloodRiskOrder(FloodRiskOrder floodRiskOrder, FloodOrder orderedit)
         {
-
-                return floodRiskOrder;
+            return floodRiskOrder;
         }
         public void Add(FloodOrder order)
         {
@@ -459,7 +513,6 @@ namespace ArmadaPortal.Data.Repositories
             return returnAttachment;
         }
 
-
         public AttachmentData GetAttachmentByReferenceId(Guid objectId)
         {
             var returnAttachment = new AttachmentData();
@@ -488,7 +541,6 @@ namespace ArmadaPortal.Data.Repositories
             }
             return returnAttachment;
         }
-
 
         public IEnumerable<AttachmentData> GetAttachmentsForOrderId(Guid orderId)
         {
@@ -542,9 +594,6 @@ namespace ArmadaPortal.Data.Repositories
             _xrm.ClearChanges();
         }
 
-
-
-
         public IEnumerable<DownloadLink> GetDocumentListByOrderId(Guid orderId)
         {
             var returnLinks = new List<DownloadLink>();
@@ -586,7 +635,6 @@ namespace ArmadaPortal.Data.Repositories
 
             return returnLinks;
         }
-
 
         public DownloadLink GetDocumentById(Guid documentId)
         {
@@ -632,7 +680,7 @@ namespace ArmadaPortal.Data.Repositories
             var fetchData = new
             {
                 statuscode = "1",
-                aai_account = "cfd96059-adbb-e811-a965-000d3a32c8b8"
+                aai_account = accountId
             };
             var fetchXml = $@"
             <fetch aggregate='true' returntotalrecordcount='true'>
@@ -640,8 +688,8 @@ namespace ArmadaPortal.Data.Repositories
                 <attribute name='aai_flooddeterminationstatus' alias='floodstatus_name' groupby='true' />
                 <attribute name='aai_floodriskorderid' alias='order_count' aggregate='count' />
                 <filter type='and'>
-                  <condition attribute='statuscode' operator='eq' value='{fetchData.statuscode/*1*/}'/>
-                  <condition attribute='aai_account' operator='eq' value='{fetchData.aai_account/*cfd96059-adbb-e811-a965-000d3a32c8b8*/}'/>
+                  <condition attribute='statuscode' operator='eq' value='{fetchData.statuscode}'/>
+                  <condition attribute='aai_account' operator='eq' value='{fetchData.aai_account}'/>
                 </filter>
               </entity>
             </fetch>";

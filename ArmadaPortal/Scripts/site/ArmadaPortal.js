@@ -450,9 +450,11 @@ var ArmadaPortal;
                 if (!DocumentImportForm.init) {
                     DocumentImportForm.init = true;
                     var s = Serenity;
-                    var w0 = s.ImageUploadEditor;
+                    var w0 = s.StringEditor;
+                    var w1 = s.MultipleImageUploadEditor;
                     Q.initFormType(DocumentImportForm, [
-                        'FileName', w0
+                        'OrderId', w0,
+                        'UploadDocument', w1
                     ]);
                 }
                 return _this;
@@ -485,7 +487,9 @@ var ArmadaPortal;
             [
                 'List',
                 'Retrieve',
-                'DocumentImport'
+                'Create',
+                'DocumentImport',
+                'CreateDocument'
             ].forEach(function (x) {
                 DocumentService[x] = function (r, s, o) {
                     return Q.serviceRequest(DocumentService.baseUrl + '/' + x, r, s, o);
@@ -500,6 +504,7 @@ var ArmadaPortal;
     (function (Flood) {
         var FloodOrderDetStatusTypeEnum;
         (function (FloodOrderDetStatusTypeEnum) {
+            FloodOrderDetStatusTypeEnum[FloodOrderDetStatusTypeEnum["AllOrders"] = 0] = "AllOrders";
             FloodOrderDetStatusTypeEnum[FloodOrderDetStatusTypeEnum["Ordered"] = 100000000] = "Ordered";
             FloodOrderDetStatusTypeEnum[FloodOrderDetStatusTypeEnum["Assigned"] = 100000001] = "Assigned";
             FloodOrderDetStatusTypeEnum[FloodOrderDetStatusTypeEnum["Review"] = 100000002] = "Review";
@@ -755,7 +760,7 @@ var ArmadaPortal;
 (function (ArmadaPortal) {
     var Texts;
     (function (Texts) {
-        ArmadaPortal['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleName: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, AdministrationClient: { ClientUser: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 } }, Common: { UserPreference: { Name: 1, PreferenceType: 1, UserId: 1, UserPreferenceId: 1, Value: 1 } }, Flood: { Branch: { BranchAbbrev: 1, BranchId: 1, BranchName: 1 }, Document: { DocumentId: 1, DocumentName: 1, DocumentTitle: 1, DocumentType: 1, DocumentUrl: 1, InsertDate: 1, ModifiedDate: 1 }, FloodOrder: { Address1Matched: 1, Address1Orig: 1, Address2Matched: 1, Address2Orig: 1, AddressEnteredFormatted: 1, AddressMatchedFormatted: 1, ApprovalLetter: 1, Borrower: 1, Borrower2: 1, BranchAbbrev: 1, BranchId: 1, BranchName: 1, CityMatched: 1, CityOrig: 1, EmailCertCC: 1, EmailCertTo: 1, FloodOrderStatus: 1, FloodOrderStatusDate: 1, FloodOrderStatusDescription: 1, FloodZone: 1, InsertDate: 1, IsUrgent: 1, LoanNumber: 1, LoanType: 1, ModifiedDate: 1, NoteToAnalyst: 1, OrderAccountId: 1, OrderAccountName: 1, OrderContactId: 1, OrderContactName: 1, OrderCreatedById: 1, OrderCreatedByName: 1, OrderDate: 1, OrderId: 1, OrderNumber: 1, OrderType: 1, ParcelNumber: 1, StateMatched: 1, StateOrig: 1, UploadDocument: 1, UploadDocumentFileName: 1, ZipMatched: 1, ZipOrig: 1 } }, _Ext: { AuditLog: { ActionDate: 1, ActionType: 1, EntityId: 1, EntityTableName: 1, Id: 1, IpAddress: 1, NewEntity: 1, OldEntity: 1, SessionId: 1, UserId: 1, VersionNo: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, FormTitle: 1, GoogleButton: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { ArmadaFloodPhoneOrder: 1, ArmadaFloodPhoneOrderMultiple: 1, AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
+        ArmadaPortal['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleName: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, AdministrationClient: { ClientUser: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 } }, Common: { UserPreference: { Name: 1, PreferenceType: 1, UserId: 1, UserPreferenceId: 1, Value: 1 } }, Flood: { Branch: { BranchAbbrev: 1, BranchId: 1, BranchName: 1 }, Document: { DocumentId: 1, DocumentName: 1, DocumentTitle: 1, DocumentType: 1, DocumentUrl: 1, InsertDate: 1, ModifiedDate: 1, OrderId: 1 }, FloodOrder: { Address1Matched: 1, Address1Orig: 1, Address2Matched: 1, Address2Orig: 1, AddressEnteredFormatted: 1, AddressMatchedFormatted: 1, ApprovalLetter: 1, Borrower: 1, Borrower2: 1, BranchAbbrev: 1, BranchId: 1, BranchName: 1, CityMatched: 1, CityOrig: 1, EmailCertCC: 1, EmailCertTo: 1, FloodOrderStatus: 1, FloodOrderStatusDate: 1, FloodOrderStatusDescription: 1, FloodZone: 1, InsertDate: 1, IsUrgent: 1, LoanNumber: 1, LoanType: 1, ModifiedDate: 1, NoteToAnalyst: 1, OrderAccountId: 1, OrderAccountName: 1, OrderContactId: 1, OrderContactName: 1, OrderCreatedById: 1, OrderCreatedByName: 1, OrderDate: 1, OrderId: 1, OrderNumber: 1, OrderType: 1, ParcelNumber: 1, StateMatched: 1, StateOrig: 1, UploadDocument: 1, UploadDocumentFileName: 1, ZipMatched: 1, ZipOrig: 1 } }, _Ext: { AuditLog: { ActionDate: 1, ActionType: 1, EntityId: 1, EntityTableName: 1, Id: 1, IpAddress: 1, NewEntity: 1, OldEntity: 1, SessionId: 1, UserId: 1, VersionNo: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, FormTitle: 1, GoogleButton: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, Dashboard: { ContentDescription: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 } }, Validation: { ArmadaFloodPhoneOrder: 1, ArmadaFloodPhoneOrderMultiple: 1, AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, SavePrimaryKeyError: 1 } });
     })(Texts = ArmadaPortal.Texts || (ArmadaPortal.Texts = {}));
 })(ArmadaPortal || (ArmadaPortal = {}));
 var _Ext;
@@ -3348,6 +3353,75 @@ var ArmadaPortal;
             DocumentImportDialog.prototype.getDialogTitle = function () {
                 return "Add a Document";
             };
+            DocumentImportDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getToolbarButtons.call(this);
+                // *** Remove default buttons ***
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "save-and-close-button"; }), 1);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "apply-changes-button"; }), 1);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "delete-button"; }), 1);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "undo-delete-button"; }), 1);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "localization-button"; }), 1);
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "clone-button"; }), 1);
+                var saveButton = {
+                    title: Q.text("Submit Order"),
+                    cssClass: 'save-and-close-button',
+                    onClick: function () {
+                        if (!_this.validateForm()) {
+                            return;
+                        }
+                        Q.defaultNotifyOptions.positionClass = "toast-top-center";
+                        Q.defaultNotifyOptions.newestOnTop = false;
+                        Q.notifyWarning(Q.text("Order is being submitted"), Q.text("Flood Order"));
+                        var saveEntity = _this.getSaveEntity();
+                        // *** Here we actually call the endpoint ***
+                        var servicecall = Flood.DocumentService.CreateDocument({
+                            OrderId: saveEntity.OrderId,
+                            UploadDocument: UploadDocument, saveEntity: .UploadDocument
+                        }, function (response) {
+                            var options = Q.defaultNotifyOptions;
+                            options.tapToDismiss = true;
+                            _this.dialogClose();
+                            var message = JSON.parse(servicecall.responseText);
+                            Q.notifySuccess(message, Q.text("Flood Order"), options);
+                        }, {
+                            blockUI: true,
+                            onError: function (response) {
+                                var options = Q.defaultNotifyOptions;
+                                options.timeOut = 15000;
+                                options.extendedTimeOut = 3000;
+                                _this.dialogClose();
+                                Q.notifyError(Q.text("Flood Order Error"), Q.text("Flood Order Save Error"), options);
+                                var errorcontent = JSON.parse(servicecall.responseText);
+                                var message = errorcontent["Error"]["Message"];
+                                Q.alert(message);
+                            },
+                        });
+                    }
+                };
+                var cancelButton = {
+                    title: Q.text("Cancel"),
+                    cssClass: 'cancel-button',
+                    onClick: function () {
+                        _this.dialogClose();
+                    }
+                };
+                var letterButton = {
+                    title: Q.text("Determination Letter Download"),
+                    cssClass: 'export-pdf-button',
+                    onClick: function () {
+                        Q.postToUrl({
+                            url: '~/FloodReport/GetFloodOrderDeterminationLetter/?orderId=' + _this.get_entityId(),
+                            params: {},
+                            target: '_blank'
+                        });
+                    }
+                };
+                buttons.push(saveButton);
+                buttons.push(cancelButton);
+                buttons.push(letterButton);
+                return buttons;
+            };
             DocumentImportDialog.prototype.getDialogButtons = function () {
                 var _this = this;
                 return [
@@ -3356,13 +3430,14 @@ var ArmadaPortal;
                         click: function () {
                             if (!_this.validateBeforeSave())
                                 return;
-                            if (_this.form.FileName.value == null ||
-                                Q.isEmptyOrNull(_this.form.FileName.value.Filename)) {
+                            if (_this.form.UploadDocument.value == null ||
+                                Q.isEmptyOrNull(_this.form.UploadDocument)) {
                                 Q.notifyError("Please select a file!");
                                 return;
                             }
                             Flood.DocumentService.DocumentImport({
-                                FileName: _this.form.FileName.value.Filename
+                                OrderId: _this.form.OrderId.value,
+                                UploadFileName: _this.form.UploadDocument,
                             }, function (response) {
                                 Q.notifyInfo('Inserted: ' + (response.Inserted || 0) +
                                     ', Updated: ' + (response.Updated || 0));
@@ -3542,8 +3617,6 @@ var ArmadaPortal;
                 // check that this is an insert
                 if (this.isNew()) {
                     //Q.notifySuccess("Order Saved with ID: " + response.EntityId);
-                    // you could also open a new dialog
-                    // new Northwind.CategoryDialog().loadByIdAndOpenDialog(response.EntityId);
                     // but let's better load inserted record using Retrieve service
                     ArmadaPortal.Flood.FloodOrderService.Retrieve({
                         EntityId: response.EntityId

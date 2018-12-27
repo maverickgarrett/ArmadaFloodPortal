@@ -150,6 +150,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\FloodOrderDocument.cs" />
     <Compile Include="Models\FloodOrderDashboard.cs" />
     <Compile Include="Xrm\Entities.cs" />
     <Compile Include="Models\Customer.cs" />

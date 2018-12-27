@@ -1,5 +1,6 @@
 ﻿namespace ArmadaPortal.Flood {
     export interface DocumentRow {
+        OrderId?: string;
         DocumentId?: string;
         DocumentType?: string;
         DocumentTitle?: string;
@@ -15,6 +16,7 @@
         export const localTextPrefix = 'Flood.Document';
 
         export declare const enum Fields {
+            OrderId = "OrderId",
             DocumentId = "DocumentId",
             DocumentType = "DocumentType",
             DocumentTitle = "DocumentTitle",

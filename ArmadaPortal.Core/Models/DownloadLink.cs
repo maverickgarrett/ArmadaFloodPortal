@@ -10,6 +10,7 @@ namespace ArmadaPortal.Core.Models
     {
         public DownloadLink()
         {
+            OrderId = "";
             DocumentId = "";
             DocumentType = "";
             Title = "";
@@ -22,6 +23,7 @@ namespace ArmadaPortal.Core.Models
             FileContent = new AttachmentData();
         }
 
+        public string OrderId { get; set; }
         public string DocumentId { get; set; }
         public string DocumentType { get; set; }
         public string Title { get; set; }

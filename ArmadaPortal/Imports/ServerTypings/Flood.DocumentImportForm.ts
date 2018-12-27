@@ -1,6 +1,7 @@
 ﻿namespace ArmadaPortal.Flood {
     export interface DocumentImportForm {
-        FileName: Serenity.ImageUploadEditor;
+        OrderId: Serenity.StringEditor;
+        UploadDocument: Serenity.MultipleImageUploadEditor;
     }
 
     export class DocumentImportForm extends Serenity.PrefixedContext {
@@ -14,10 +15,12 @@
                 DocumentImportForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.ImageUploadEditor;
+                var w0 = s.StringEditor;
+                var w1 = s.MultipleImageUploadEditor;
 
                 Q.initFormType(DocumentImportForm, [
-                    'FileName', w0
+                    'OrderId', w0,
+                    'UploadDocument', w1
                 ]);
             }
         }

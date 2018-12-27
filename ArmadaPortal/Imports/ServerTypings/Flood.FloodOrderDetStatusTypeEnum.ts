@@ -1,5 +1,6 @@
 ﻿namespace ArmadaPortal.Flood {
     export enum FloodOrderDetStatusTypeEnum {
+        AllOrders = 0,
         Ordered = 100000000,
         Assigned = 100000001,
         Review = 100000002,

@@ -149,26 +149,56 @@
             return response;
         }
 
-
         [HttpPost]
         public DocumentImportResponse Create(IUnitOfWork uow, DocumentImportRequest request)
         {
+            //return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            return CreateDocument(uow, request);
+        }
+
+        [HttpPost]
+        public DocumentImportResponse DocumentImport(IUnitOfWork uow, DocumentImportRequest request)
+        {
+            //return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            return CreateDocument(uow, request);
+        }
+
+        private DocumentImportResponse CreateDocument(IUnitOfWork uow, DocumentImportRequest request)
+        {
             request.CheckNotNull();
-            Check.NotNullOrWhiteSpace(request.FileName, "filename");
+            Check.NotNullOrWhiteSpace(request.UploadDocument, "filename");
 
-            UploadHelper.CheckFileNameSecurity(request.FileName);
+            UploadHelper.CheckFileNameSecurity(request.UploadDocument);
 
-            if (!request.FileName.StartsWith("temporary/"))
+            if (!request.UploadDocument.StartsWith("temporary/"))
                 throw new ArgumentOutOfRangeException("filename");
 
             var response = new DocumentImportResponse();
             response.ErrorList = new List<string>();
+
             try
             {
-                //new ProductRepository().Create(uow, new SaveRequest<MyRow>
-                //{
-                //    Entity = product
-                //});
+                var floodOrderDocument = new FloodOrderDocument();
+                floodOrderDocument.OrderId = Guid.Parse(request.OrderId);
+                floodOrderDocument.IsNew = true;
+                floodOrderDocument.CustomerUploadFiles = new List<DownloadLink>();
+
+
+                var uploadLoadFiles = ParseAndValidate(request.UploadDocument, "UploadDocument");
+
+                foreach (var uploadfile in uploadLoadFiles)
+                {
+                    // Download the attachment in the current execution folder.
+                    using (FileStream fileStream = new FileStream(UploadHelper.DbFilePath(uploadfile.Filename), FileMode.Open, FileAccess.Read))
+                    {
+                        floodOrderDocument.CustomerUploadFiles.Add(new DownloadLink
+                        {
+                            Title = uploadfile.OriginalName,
+                            FileContent = AttachmentHelper.CreateFromStream(fileStream, uploadfile.OriginalName)
+                        });
+                    }
+                }
+                var documentHeaderId = _orderRepository.SaveDocument(floodOrderDocument);
             }
             catch (Exception ex)
             {
@@ -177,6 +207,23 @@
 
             response.Inserted = response.Inserted + 1;
             return response;
+        }
+
+
+        private UploadedFile[] ParseAndValidate(string json, string key)
+        {
+            json = json.TrimToNull();
+
+            if (json != null && (!json.StartsWith("[") || !json.EndsWith("]")))
+                throw new ArgumentOutOfRangeException(key);
+
+            var list = JSON.Parse<UploadedFile[]>(json ?? "[]");
+
+            if (list.Any(x => string.IsNullOrEmpty(x.Filename)) ||
+                list.GroupBy(x => x.Filename.Trim()).SelectMany(x => x.Skip(1)).Any())
+                throw new ArgumentOutOfRangeException(key);
+
+            return list;
         }
 
 

@@ -22,6 +22,7 @@ namespace ArmadaPortal.Core.Repositories
         FloodOrder GetOrderById(Guid orderId);
         FloodOrder GetOrderByNumber(string orderId);
         FloodOrderDashboard GetFloodOrderDashboard(Guid accountId);
+        Guid SaveDocument(FloodOrderDocument documentUpload);
         void SaveChanges();
         Guid SaveCommit(FloodOrder order);
         bool Update(FloodOrder order);
