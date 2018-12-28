@@ -87,24 +87,25 @@ namespace ArmadaPortal.Flood.Pages
 
     public class FloodOrderDashboardPageModel
     {
-        public int NewOrders { get; set; }
-        public string NewOrdersPct { get; set; }
-        public int OrdersInProgress { get; set; }
-        public string OrdersInProgressPct { get; set; }
-
-        public int CompletedOrders { get; set; }
-        public string CompletedOrdersPct { get; set; }
-        public int IssueOrOnHoldOrders { get; set; }
-        public string IssueOrOnHoldOrdersPct { get; set; }
-        public int TotalOrders { get; set; }
+        public int DraftCount { get; set; }
+        public int OrderedCount { get; set; }
+        public int AssignedCount { get; set; }
+        public int ReviewCount { get; set; }
+        public int CompletedCount { get; set; }
+        public int OnHoldCount { get; set; }
+        public int IssuesCount { get; set; }
+        public int TotalOrderCount { get; set; }
 
         public FloodOrderDashboardPageModel()
         {
-            NewOrders = 0;
-            OrdersInProgress = 0;
-            CompletedOrders = 0;
-            IssueOrOnHoldOrders = 0;
-            TotalOrders = 0;
+            DraftCount = 0;
+            OrderedCount = 0;
+            AssignedCount = 0;
+            ReviewCount = 0;
+            CompletedCount = 0;
+            OnHoldCount = 0;
+            IssuesCount = 0;
+            TotalOrderCount = 0;
         }
 
 
