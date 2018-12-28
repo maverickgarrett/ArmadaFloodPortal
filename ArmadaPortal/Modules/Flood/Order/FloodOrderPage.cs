@@ -51,30 +51,30 @@ namespace ArmadaPortal.Flood.Pages
                     var floodOrderDashboardCount = _orderRepository.GetFloodOrderDashboard(_accountId);
 
                     var model = new FloodOrderDashboardPageModel();
-                    model.NewOrders = floodOrderDashboardCount.NewOrders;
-                    model.OrdersInProgress = floodOrderDashboardCount.OrdersInProgress;
-                    model.CompletedOrders = floodOrderDashboardCount.CompletedOrders;
-                    model.IssueOrOnHoldOrders = floodOrderDashboardCount.IssueOrOnHoldOrders;
-                    model.TotalOrders = floodOrderDashboardCount.TotalOrders;
+                    model.OrderedCount = floodOrderDashboardCount.NewOrders;
+                    model.AssignedCount = floodOrderDashboardCount.OrdersInProgress;
+                    model.CompletedCount = floodOrderDashboardCount.CompletedOrders;
+                    model.OnHoldCount = floodOrderDashboardCount.IssueOrOnHoldOrders;
+                    model.TotalOrderCount = floodOrderDashboardCount.TotalOrders;
 
-                    try
-                    {
-                        var newOrdersCalc = (double)(model.NewOrders / model.TotalOrders) * 100;
-                        model.NewOrdersPct = newOrdersCalc.ToString("00");
+                    //try
+                    //{
+                    //    var newOrdersCalc = (double)(model.NewOrders / model.TotalOrders) * 100;
+                    //    model.NewOrdersPct = newOrdersCalc.ToString("00");
 
-                        var ordersInProgressCalc = (double)(model.OrdersInProgress / model.TotalOrders) * 100;
-                        model.OrdersInProgressPct = ordersInProgressCalc.ToString("00");
+                    //    var ordersInProgressCalc = (double)(model.OrdersInProgress / model.TotalOrders) * 100;
+                    //    model.OrdersInProgressPct = ordersInProgressCalc.ToString("00");
 
-                        var issueorholdorderscalc = (double)(model.IssueOrOnHoldOrders / model.TotalOrders) * 100;
-                        model.IssueOrOnHoldOrdersPct = issueorholdorderscalc.ToString("00");
+                    //    var issueorholdorderscalc = (double)(model.IssueOrOnHoldOrders / model.TotalOrders) * 100;
+                    //    model.IssueOrOnHoldOrdersPct = issueorholdorderscalc.ToString("00");
 
-                        var completedorderscalc = (double)(model.CompletedOrders / model.TotalOrders) * 100;
-                        model.NewOrdersPct = completedorderscalc.ToString("00");
-                    }
+                    //    var completedorderscalc = (double)(model.CompletedOrders / model.TotalOrders) * 100;
+                    //    model.NewOrdersPct = completedorderscalc.ToString("00");
+                    //}
 
-                    catch (DivideByZeroException)
-                    {
-                    }
+                    //catch (DivideByZeroException)
+                    //{
+                    //}
 
                     return model;
                 });
