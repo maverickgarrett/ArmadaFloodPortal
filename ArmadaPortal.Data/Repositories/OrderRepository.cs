@@ -735,37 +735,37 @@ namespace ArmadaPortal.Data.Repositories
                 switch (FloodStatusOptionSetValue.Value)
                 {
                     case (int)FloodDeterminationStatus.Draft:
-                        returnDashboard.NewOrders += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.DraftCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
                     case (int)FloodDeterminationStatus.Ordered:
-                        returnDashboard.NewOrders += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.OrderedCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
                     case (int)FloodDeterminationStatus.Assigned:
-                        returnDashboard.OrdersInProgress += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.AssignedCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
 
                     case (int)FloodDeterminationStatus.Issue:
-                        returnDashboard.IssueOrOnHoldOrders += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.IssuesCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
                     case (int)FloodDeterminationStatus.OnHold:
-                        returnDashboard.IssueOrOnHoldOrders += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.OnHoldCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
                     case (int)FloodDeterminationStatus.Review:
-                        returnDashboard.IssueOrOnHoldOrders += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.ReviewCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
                     case (int)FloodDeterminationStatus.Completed:
-                        returnDashboard.CompletedOrders += FloodStatusCount;
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.CompletedCount += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
 
                     default:
-                        returnDashboard.TotalOrders += FloodStatusCount;
+                        returnDashboard.TotalOrderCount += FloodStatusCount;
                         break;
 
                 }

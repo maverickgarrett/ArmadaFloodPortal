@@ -48,14 +48,19 @@ namespace ArmadaPortal.Flood.Pages
             var cachedModel = TwoLevelCache.GetLocalStoreOnly("FloodOrderDashboardPageModel", TimeSpan.FromMinutes(5),
                 FloodOrderRow.Fields.GenerationKey, () =>
                 {
+                    var model = new FloodOrderDashboardPageModel();
                     var floodOrderDashboardCount = _orderRepository.GetFloodOrderDashboard(_accountId);
 
-                    var model = new FloodOrderDashboardPageModel();
-                    model.OrderedCount = floodOrderDashboardCount.NewOrders;
-                    model.AssignedCount = floodOrderDashboardCount.OrdersInProgress;
-                    model.CompletedCount = floodOrderDashboardCount.CompletedOrders;
-                    model.OnHoldCount = floodOrderDashboardCount.IssueOrOnHoldOrders;
-                    model.TotalOrderCount = floodOrderDashboardCount.TotalOrders;
+                    if (floodOrderDashboardCount != null)
+                    {
+                        model.DraftCount = floodOrderDashboardCount.DraftCount;
+                        model.AssignedCount = floodOrderDashboardCount.AssignedCount ;
+                        model.OrderedCount = floodOrderDashboardCount.OrderedCount;
+                        model.ReviewCount = floodOrderDashboardCount.ReviewCount;
+                        model.CompletedCount = floodOrderDashboardCount.CompletedCount;
+                        model.IssuesCount = floodOrderDashboardCount.IssuesCount;
+                        model.TotalOrderCount = floodOrderDashboardCount.TotalOrderCount;
+                    }
 
                     //try
                     //{
@@ -107,8 +112,6 @@ namespace ArmadaPortal.Flood.Pages
             IssuesCount = 0;
             TotalOrderCount = 0;
         }
-
-
     }
 
 }
