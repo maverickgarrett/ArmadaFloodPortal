@@ -72,6 +72,28 @@
             return this.UpdateOrder(uow, request);
         }
 
+        [HttpPost]
+        public FloodOrderDeterminationLetterResponse CheckIfDeterminationLetterExists(IUnitOfWork uow, FloodOrderDeterminationLetterRequest request)
+        {
+            var returnResponse = new FloodOrderDeterminationLetterResponse();
+            returnResponse.ErrorList = new List<string>();
+
+            var orderId = Guid.Parse(request.OrderId);
+            var letterId = _orderRepository.GetFloodDeterminationLetterIdForOrderId(orderId);
+
+            if (string.IsNullOrEmpty(letterId))
+            {
+                returnResponse.IsValid = 0;
+                returnResponse.ErrorList.Add("The Determination Letter has not been created yet.");
+            }
+            else
+            {
+                returnResponse.IsValid = 1;
+            }
+            return returnResponse;
+        }
+
+
         private SaveResponse UpdateOrder(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             var retResponse = new SaveResponse();
@@ -100,6 +122,9 @@
             return retResponse;
 
         }
+
+
+
 
         public ListResponse<MyRow> List(IDbConnection connection, FloodOrderListRequest request)
         {
@@ -369,7 +394,8 @@
                     using (FileStream fileStream = new FileStream(UploadHelper.DbFilePath(uploadfile.Filename), FileMode.Open, FileAccess.Read))
                     {
                         order.CustomerUploadFiles.Add(new DownloadLink { 
-                                    Title = uploadfile.Filename,
+                                    Title = "Customer Uploaded - " + uploadfile.OriginalName,
+                                    FileName = uploadfile.OriginalName,
                                     FileContent = AttachmentHelper.CreateFromStream(fileStream, uploadfile.OriginalName)
                         });
                     }

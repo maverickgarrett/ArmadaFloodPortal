@@ -117,11 +117,13 @@ namespace ArmadaPortal.Core.Models
             {
                 UserId = floodRiskOrder.OrderedBy != null ? floodRiskOrder.OrderedBy.Id : Guid.Empty,
                 UserName = floodRiskOrder.OrderedBy != null ? floodRiskOrder.OrderedBy.Name : "empty",
+                FullName = floodRiskOrder.OrderedBy != null ? floodRiskOrder.OrderedBy.Name : "empty"
             };
             this.OrderContact = new User
             {
                 UserId = floodRiskOrder.FloodOrderContactId != null ? floodRiskOrder.FloodOrderContactId.Id : Guid.Empty,
                 UserName = floodRiskOrder.FloodOrderContactId != null ? floodRiskOrder.FloodOrderContactId.Name : "empty",
+                FullName = floodRiskOrder.FloodOrderContactId != null ? floodRiskOrder.FloodOrderContactId.Name : "empty",
             };
             this.OrderDate = floodRiskOrder.OrderDate;
             this.OrderType = floodRiskOrder.OrderType;
@@ -169,8 +171,6 @@ namespace ArmadaPortal.Core.Models
                     Title = "Flood Certificate",
                     AltText = "Flood Certificate"
                 };
-
-
             }
             else
             {

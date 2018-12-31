@@ -133,6 +133,7 @@
                     var newRow = new MyRow();
                     newRow.DocumentId = baseDocument.DocumentId;
                     newRow.DocumentType = baseDocument.DocumentType;
+                    newRow.DocumentTitle = baseDocument.Title;
                     newRow.DocumentUrl = baseDocument.DownloadUrl;
                     newRow.InsertDate = baseDocument.InsertDate;
                     newRow.ModifiedDate = baseDocument.ModifiedDate;

@@ -236,6 +236,7 @@
     <Compile Include="Modules\Flood\Document\DocumentListRequest.cs" />
     <Compile Include="Modules\Flood\Document\DocumentRetrieveRequest.cs" />
     <Compile Include="Modules\Flood\Order\FloodOrderColumns.cs" />
+    <Compile Include="Modules\Flood\Order\FloodOrderDeterminationLetterRequest.cs" />
     <Compile Include="Modules\Flood\Order\FloodOrderEndPoint.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\SelectListItemExtensions.cs" />
@@ -2124,6 +2125,12 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Flood.FloodOrderColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Flood.FloodOrderDeterminationLetterRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Flood.FloodOrderDeterminationLetterResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Flood.FloodOrderDetStatusTypeEnum.ts">

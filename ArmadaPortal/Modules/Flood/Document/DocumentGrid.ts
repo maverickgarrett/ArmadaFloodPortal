@@ -88,7 +88,7 @@
 
         protected getSlickOptions() {
             var opt = super.getSlickOptions();
-            opt.showFooterRow = true;
+            opt.showFooterRow = false;
             return opt;
         }
 

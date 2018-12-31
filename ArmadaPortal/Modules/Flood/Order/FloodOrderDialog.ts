@@ -31,6 +31,10 @@
 
             Serenity.TabsExtensions.setDisabled(this.tabs, 'Documents', this.isNewOrDeleted());
             this.documentsGrid.orderId = entity.OrderId;
+
+            if (!this.entity.ShowDownloadLink) {
+
+            }
         }
 
         protected afterLoadEntity() {
@@ -117,7 +121,6 @@
                 cssClass: 'cancel-button',
                 onClick: () => {
                     this.dialogClose();
-
                 }
 
             };
@@ -126,13 +129,23 @@
                 title: Q.text("Determination Letter Download"),
                 cssClass: 'export-pdf-button',
                 onClick: () => {
-                    Q.postToUrl({
-                        url: '~/FloodReport/GetFloodOrderDeterminationLetter/?orderId=' + this.get_entityId(),
-                        params: {
-                        },
-                        target: '_blank'
+
+                    FloodOrderService.CheckIfDeterminationLetterExists({
+                        OrderId: this.get_entityId()
+                    }, response => {
+                        if (response.IsValid == 1) {
+                            Q.postToUrl({
+                                url: '~/FloodReport/GetFloodOrderDeterminationLetter/?orderId=' + this.get_entityId(),
+                                params: {
+                                },
+                                target: '_blank'
+                            });
+                        }
+                        else {
+                            Q.notifyError("The Flood Determination Document is not ready for this order yet.")
+                        }
                     });
-                }
+                },
             };
 
 
@@ -185,10 +198,17 @@
             this.deleteButton.hide();
             this.applyChangesButton.hide();
 
+            this.toolbar.findButton('cancel-button').toggle(this.isNew());
             this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
+
+            this.toolbar.findButton('export-pdf-button').toggleClass('disabled', !this.entity.ShowDownloadLink);
+
+
 
             if (this.isEditMode()) {
                 Serenity.EditorUtils.setReadonly(this.element.find('.editor'), true);
+                Serenity.EditorUtils.setReadonly(this.element.find('.emaildomain'), true);
+                this.toolbar.findButton('cancel-button').hide();
                 this.saveAndCloseButton.hide();
 
                 // remove required asterisk (*)

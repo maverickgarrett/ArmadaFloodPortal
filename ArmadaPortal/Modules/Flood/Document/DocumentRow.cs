@@ -27,14 +27,14 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.DocumentId[this] = value; }
         }
 
-        [DisplayName("Type"), Size(10), QuickSearch]
+        [DisplayName("Type"), Size(50), QuickSearch]
         public String DocumentType
         {
             get { return Fields.DocumentType[this]; }
             set { Fields.DocumentType[this] = value; }
         }
 
-        [DisplayName("Title"), Size(100), QuickSearch]
+        [DisplayName("Title"), Size(200)]
         public String DocumentTitle
         {
             get { return Fields.DocumentTitle[this]; }
@@ -42,7 +42,7 @@ namespace ArmadaPortal.Flood.Entities
         }
 
 
-        [DisplayName("Document Name"), Size(50), QuickSearch]
+        [DisplayName("Document Name"), Size(100)]
         public String DocumentName
         {
             get { return Fields.DocumentName[this]; }
@@ -57,22 +57,22 @@ namespace ArmadaPortal.Flood.Entities
         }
 
 
-        [DisplayName("Insert Date"), Updatable(false)]
+        [DisplayName("Insert Date"), Updatable(false), Size(75)]
         public DateTime? InsertDate
         {
             get { return Fields.InsertDate[this]; }
             set { Fields.InsertDate[this] = value; }
         }
 
-        [DisplayName("Modified Date"), Updatable(false)]
+        [DisplayName("Modified Date"), Updatable(false), Size(75)]
         public DateTime? ModifiedDate
         {
             get { return Fields.ModifiedDate[this]; }
             set { Fields.ModifiedDate[this] = value; }
         }
 
-        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100)]
-        [MultipleFileUploadEditor(FilenameFormat = "OrderDocument/~", CopyToHistory = true)]
+
+        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100), MultipleFileUploadEditor]
         public String UploadDocument
         {
             get { return Fields.UploadDocument[this]; }

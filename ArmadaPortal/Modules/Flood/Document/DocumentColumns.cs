@@ -13,7 +13,9 @@
         public String DocumentType { get; set; }
         public String DocumentTitle { get; set; }
         public String DocumentName { get; set; }
+        [Serenity.ComponentModel.DisplayFormat("MM/dd/yyyy hh:mm")]
         public DateTime? InsertDate { get; set; }
+        [Serenity.ComponentModel.DisplayFormat("MM/dd/yyyy hh:mm")]
         public DateTime? ModifiedDate { get; set; }
 
     }

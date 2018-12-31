@@ -164,6 +164,7 @@ namespace ArmadaPortal.Data.Repositories
                         ShowinPortal = true,
                         FloodRiskOrder = new EntityReference(FloodRiskOrder.EntityLogicalName, returnOrderId),
                         DocumentType = DocumentType.CustomerUploaded,
+                        
                         Name = "Customer Uploaded Documents"
                     };
 
@@ -188,7 +189,7 @@ namespace ArmadaPortal.Data.Repositories
                             IsDocument = true,
                             MimeType = doc.FileContent.Meta.MimeType,
                             ObjectId = new EntityReference(FloodRiskOrderDocument.EntityLogicalName, returnDocumentId),
-                            FileName = doc.FileContent.Meta.Name,
+                            FileName = doc.FileName,
                             DocumentBody = doc.FileContent.Data.Base64
                         };
 
@@ -313,7 +314,7 @@ namespace ArmadaPortal.Data.Repositories
                 if (statusFilterConvertSuccess)
                 {
                     orders = (from c in _xrm.FloodRiskOrderSet
-                              where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                              where c.FloodRiskOrderStatusCode.Value == (int)FloodRiskOrderStatus.Active
                               && c.Account.Id == accountId
                               && c.FloodDetStatus.Value == (FloodDeterminationStatus)statusFilterId
                               orderby c.ModifiedOn descending
@@ -329,8 +330,8 @@ namespace ArmadaPortal.Data.Repositories
         {
             var orders =
                 (from o in _xrm.FloodRiskOrderSet
-                 where o.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
-                 && o.Account.Id == accountId
+                 where o.FloodRiskOrderStatusCode.Value == (int)FloodRiskOrderStatus.Active
+                    && o.Account.Id == accountId
                  select o);
 
             if (!string.IsNullOrEmpty(statusFilter) && statusFilter != "0")
@@ -340,7 +341,7 @@ namespace ArmadaPortal.Data.Repositories
 
                 if (statusFilterConvertSuccess) {
                     orders = (from c in _xrm.FloodRiskOrderSet
-                              where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                              where c.FloodRiskOrderStatusCode.Value == (int)FloodRiskOrderStatus.Active
                               && c.Account.Id == accountId
                               && c.FloodDetStatus == (FloodDeterminationStatus)statusFilterId
                               select c);
@@ -367,7 +368,7 @@ namespace ArmadaPortal.Data.Repositories
         {
             var orders =
                 (from c in _xrm.FloodRiskOrderSet
-                 where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                 where c.FloodRiskOrderStatusCode.Value == (int)FloodRiskOrderStatus.Active
                  && c.Account.Id == accountId
                  select c);
 
@@ -379,7 +380,7 @@ namespace ArmadaPortal.Data.Repositories
                 if (statusFilterConvertSuccess)
                 {
                     orders = (from c in _xrm.FloodRiskOrderSet
-                     where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+                     where c.FloodRiskOrderStatusCode.Value == (int)FloodRiskOrderStatus.Active
                      && c.Account.Id == accountId
                      && c.FloodDetStatus == (FloodDeterminationStatus)statusFilterId
                      select c);
@@ -474,7 +475,7 @@ namespace ArmadaPortal.Data.Repositories
         {
             var order =
               (from c in _xrm.FloodRiskOrderSet
-               where c.FloodRiskOrderStatusCode.Equals(FloodRiskOrderStatus.Active)
+               where c.FloodRiskOrderStatusCode.Value == (int)FloodRiskOrderStatus.Active
                && c.Account.Id == _accountId
                && c.OrderNumber.Contains(orderNumber.Trim())
                orderby c.ModifiedOn descending
@@ -549,6 +550,7 @@ namespace ArmadaPortal.Data.Repositories
             var files =
                 (from c in _xrm.FloodRiskOrderDocumentSet
                  where c.FloodRiskOrder.Id == orderId
+                 && c.FloodRiskOrderDocumentStatusCode.Value == (int)FloodRiskOrderDocumentStatus.Active
                  && c.ShowinPortal == true
                  select c).ToList();
 
@@ -588,15 +590,14 @@ namespace ArmadaPortal.Data.Repositories
 
         }
 
-
-
         public AttachmentData GetFloodDeterminationLetterForOrderId(Guid orderId)
         {
             var returnAttachment = new AttachmentData();
 
             var documentHeader =
                 (from c in _xrm.FloodRiskOrderDocumentSet
-                 where c.FloodRiskOrder.Id == orderId
+                 where c.FloodRiskOrderDocumentStatusCode.Value == (int)FloodRiskOrderDocumentStatus.Active
+                 && c.FloodRiskOrder.Id == orderId
                  && c.ShowinPortal == true
                  && c.DocumentType.Value == DocumentType.FloodDeterminationLetter
                  orderby c.ModifiedOn descending
@@ -610,7 +611,7 @@ namespace ArmadaPortal.Data.Repositories
 
                 if (documentAttachmentList != null && !string.IsNullOrEmpty(documentAttachmentList.Id.ToString()))
                 {
-                    returnAttachment = GetAttachmentByReferenceId(documentAttachmentList.Id);
+                    returnAttachment = GetAttachmentByAnnotationId(documentAttachmentList.Id);
                 }
             }
 
@@ -629,7 +630,7 @@ namespace ArmadaPortal.Data.Repositories
             var returnLinks = new List<DownloadLink>();
 
             var documentHeaderList =
-                (from c in _xrm.FloodRiskOrderDocumentSet.Where(x => x.FloodRiskOrder.Id == orderId && x.ShowinPortal == true)
+                (from c in _xrm.FloodRiskOrderDocumentSet.Where(x => x.FloodRiskOrder.Id == orderId && x.ShowinPortal == true && x.FloodRiskOrderDocumentStatusCode.Value == (int)FloodRiskOrderDocumentStatus.Active)
                  select c).ToList();
 
             //For each document header. There may be multiple attachments
@@ -638,6 +639,7 @@ namespace ArmadaPortal.Data.Repositories
             {
                 var documentHeaderId = documentHeader.Id;
                 var documentType = documentHeader.DocumentType.ToString();
+                var documentTitle = documentHeader.Name;
                 var createdOn = documentHeader.CreatedOn;
                 var modifiedOn = documentHeader.ModifiedOn;
 
@@ -653,7 +655,7 @@ namespace ArmadaPortal.Data.Repositories
                         retDocument.DocumentId = document.Id.ToString();
                         retDocument.DocumentType = documentHeader.DocumentType.Value.ToString();
                         retDocument.AltText = documentHeader.Name + "" + document.FileName;
-                        retDocument.Title = document.FileName;
+                        retDocument.Title = documentTitle ?? document.FileName;
                         retDocument.InsertDate = document.CreatedOn.Value;
                         retDocument.ModifiedDate = document.ModifiedOn.Value;
                         retDocument.FileName = document.FileName;
@@ -671,7 +673,7 @@ namespace ArmadaPortal.Data.Repositories
             var returnLink = new DownloadLink();
 
             var documentHeader =
-                (from c in _xrm.FloodRiskOrderDocumentSet.Where(x => x.Id == documentId && x.ShowinPortal == true)
+                (from c in _xrm.FloodRiskOrderDocumentSet.Where(x => x.Id == documentId && x.ShowinPortal == true && x.FloodRiskOrderDocumentStatusCode.Value == (int)FloodRiskOrderDocumentStatus.Active)
                  select c).ToList().FirstOrDefault();
 
             var file =

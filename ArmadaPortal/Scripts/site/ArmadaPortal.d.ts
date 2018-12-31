@@ -804,11 +804,13 @@ declare namespace ArmadaPortal.Flood {
         const baseUrl = "Flood/Order";
         function Create(request: FloodOrderSaveRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Update(request: Serenity.SaveRequest<FloodOrderRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function CheckIfDeterminationLetterExists(request: FloodOrderDeterminationLetterRequest, onSuccess?: (response: FloodOrderDeterminationLetterResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: FloodOrderListRequest, onSuccess?: (response: Serenity.ListResponse<FloodOrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: FloodOrderRetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<FloodOrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         const enum Methods {
             Create = "Flood/Order/Create",
             Update = "Flood/Order/Update",
+            CheckIfDeterminationLetterExists = "Flood/Order/CheckIfDeterminationLetterExists",
             List = "Flood/Order/List",
             Retrieve = "Flood/Order/Retrieve"
         }
@@ -1160,11 +1162,6 @@ declare namespace _Ext {
         Year = 6
     }
 }
-declare namespace ArmadaPortal.LanguageList {
-    function getValue(): string[][];
-}
-declare namespace ArmadaPortal.ScriptInitialization {
-}
 declare namespace ArmadaPortal.Administration {
     class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
         protected getFormKey(): string;
@@ -1270,6 +1267,10 @@ declare namespace ArmadaPortal.Administration {
         protected getDefaultSortBy(): UserRow.Fields[];
     }
 }
+declare namespace ArmadaPortal.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
+}
 declare namespace ArmadaPortal.Administration {
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         protected getIdProperty(): string;
@@ -1367,6 +1368,11 @@ declare namespace ArmadaPortal.AdministrationClient {
         constructor(container: JQuery);
         protected getDefaultSortBy(): ClientUserRow.Fields[];
     }
+}
+declare namespace ArmadaPortal.LanguageList {
+    function getValue(): string[][];
+}
+declare namespace ArmadaPortal.ScriptInitialization {
 }
 declare namespace ArmadaPortal {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
@@ -1744,6 +1750,34 @@ declare namespace ArmadaPortal.Flood {
         static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
     }
 }
+declare namespace ArmadaPortal.Membership {
+    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace ArmadaPortal.Membership {
+    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace ArmadaPortal.Membership {
+    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace ArmadaPortal.Membership {
+    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
 declare namespace _Ext {
     class AuditLogActionTypeFormatter implements Slick.Formatter {
         static format(ctx: Slick.FormatterContext): string;
@@ -1870,6 +1904,22 @@ declare namespace _Ext {
         protected getReportTitle(): string;
         protected getReportKey(): string;
         protected getReportRequest(): TRequest;
+        constructor(container: JQuery);
+    }
+}
+declare namespace _Ext {
+    class ReplaceRowDialog extends _Ext.DialogBase<any, any> {
+        request: ReplaceRowRequest;
+        entityList: Array<any>;
+        protected getFormKey(): string;
+        protected form: ReplaceRowForm;
+        constructor(request: ReplaceRowRequest, entityList: Array<any>);
+        protected getToolbarButtons(): Serenity.ToolButton[];
+    }
+}
+declare var Vue: any;
+declare namespace _Ext.DevTools {
+    class SergenPanel extends Serenity.Widget<any> {
         constructor(container: JQuery);
     }
 }
@@ -2002,6 +2052,35 @@ declare namespace _Ext {
         isHtml: boolean;
         isLocalText: boolean;
         hideLabel: boolean;
+    }
+}
+declare namespace _Ext {
+    class GridItemPickerDialog extends Serenity.TemplatedDialog<GridItemPickerEditorOptions> {
+        getTemplate(): string;
+        checkGrid: GridBase<any, GridItemPickerEditorOptions>;
+        readonly selectedItems: any[];
+        constructor(options: GridItemPickerEditorOptions);
+        onSuccess: (selectedItems: any) => void;
+        getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace _Ext {
+    class GridItemPickerEditor extends Serenity.TemplatedWidget<GridItemPickerEditorOptions> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        protected getTemplate(): string;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
+        constructor(container: JQuery, options: GridItemPickerEditorOptions);
+        protected: any;
+        value: string;
+        text: string;
+    }
+    interface GridItemPickerEditorOptions {
+        gridType: any;
+        nameFieldInThisRow?: string;
+        rowType?: string;
+        nameFieldInGridRow?: string;
+        multiple: boolean;
+        preSelectedKeys?: any[];
     }
 }
 declare namespace _Ext {
@@ -2240,80 +2319,14 @@ declare namespace q {
     var DefaultEditorDialogOptions: ExtDialogOptions;
     var fiscalYearMonths: number[];
 }
-declare namespace ArmadaPortal.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
-}
-declare namespace ArmadaPortal.Membership {
-    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
+declare namespace ArmadaPortal.Flood {
+    interface FloodOrderDeterminationLetterRequest extends Serenity.RetrieveRequest {
+        OrderId?: string;
     }
 }
-declare namespace ArmadaPortal.Membership {
-    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace ArmadaPortal.Membership {
-    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace ArmadaPortal.Membership {
-    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace _Ext {
-    class ReplaceRowDialog extends _Ext.DialogBase<any, any> {
-        request: ReplaceRowRequest;
-        entityList: Array<any>;
-        protected getFormKey(): string;
-        protected form: ReplaceRowForm;
-        constructor(request: ReplaceRowRequest, entityList: Array<any>);
-        protected getToolbarButtons(): Serenity.ToolButton[];
-    }
-}
-declare var Vue: any;
-declare namespace _Ext.DevTools {
-    class SergenPanel extends Serenity.Widget<any> {
-        constructor(container: JQuery);
-    }
-}
-declare namespace _Ext {
-    class GridItemPickerDialog extends Serenity.TemplatedDialog<GridItemPickerEditorOptions> {
-        getTemplate(): string;
-        checkGrid: GridBase<any, GridItemPickerEditorOptions>;
-        readonly selectedItems: any[];
-        constructor(options: GridItemPickerEditorOptions);
-        onSuccess: (selectedItems: any) => void;
-        getDialogOptions(): JQueryUI.DialogOptions;
-    }
-}
-declare namespace _Ext {
-    class GridItemPickerEditor extends Serenity.TemplatedWidget<GridItemPickerEditorOptions> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        protected getTemplate(): string;
-        getEditValue(property: any, target: any): void;
-        setEditValue(source: any, property: any): void;
-        constructor(container: JQuery, options: GridItemPickerEditorOptions);
-        protected: any;
-        value: string;
-        text: string;
-    }
-    interface GridItemPickerEditorOptions {
-        gridType: any;
-        nameFieldInThisRow?: string;
-        rowType?: string;
-        nameFieldInGridRow?: string;
-        multiple: boolean;
-        preSelectedKeys?: any[];
+declare namespace ArmadaPortal.Flood {
+    interface FloodOrderDeterminationLetterResponse extends Serenity.ServiceResponse {
+        IsValid?: number;
+        ErrorList?: string[];
     }
 }

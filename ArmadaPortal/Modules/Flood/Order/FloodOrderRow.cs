@@ -305,8 +305,7 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.ParcelNumber[this] = value; }
         }
 
-        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100)]
-        [MultipleFileUploadEditor(FilenameFormat = "OrderDocument/~", CopyToHistory = true)]
+        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100), MultipleFileUploadEditor]
         public String UploadDocument
         {
             get { return Fields.UploadDocument[this]; }

@@ -27,7 +27,7 @@
         public String LoanNumber { get; set; }
         [Width(250)]
         public String AddressEnteredFormatted { get; set; }
-        [Width(25)]
+        [Width(50)]
         public String FloodZone { get; set; }
     }
 }   
