@@ -225,6 +225,11 @@
     <Compile Include="Modules\AdministrationClient\ClientUser\ClientUserPage.cs" />
     <Compile Include="Modules\AdministrationClient\ClientUser\ClientUserRepository.cs" />
     <Compile Include="Modules\AdministrationClient\ClientUser\ClientUserRow.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\CrmAuthenticationService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\CrmUserRetrieveService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\CrmUserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\ICrmUserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\IUserRetrieveService.cs" />
     <Compile Include="Modules\Flood\Document\DocumentEndpoint.cs" />
     <Compile Include="Modules\Flood\Document\DocumentImportForm.cs" />
     <Compile Include="Modules\Flood\Document\DocumentImportRequest.cs" />

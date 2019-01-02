@@ -11,7 +11,9 @@ namespace ArmadaPortal.Flood
         [Description("Basic")]
         Basic = OrderType.Basic,
         [Description("Life Of Loan")]
-        LifeOfLoan = OrderType.LifeOfLoan
+        LifeOfLoan = OrderType.LifeOfLoan,
+        [Description("Migration")]
+        Migration = OrderType.Migration
     }
 
 }

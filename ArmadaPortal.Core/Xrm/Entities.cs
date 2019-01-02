@@ -6440,7 +6440,10 @@ namespace ArmadaPortal.Core
 		/// </Summary>
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Basic = 100000001,
-	}
+
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Migration = 100000001
+    }
 	
 	/// <Summary>
 	/// FloodRiskOrderStatus
