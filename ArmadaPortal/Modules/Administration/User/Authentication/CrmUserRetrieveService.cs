@@ -39,10 +39,8 @@
 
         private CrmUserDefinition GetFirstByName(string userName)
         {
-            //var user = connection.TrySingle<Entities.UserRow>(criteria);
-
             var user = _userRepository.GetUserByName(userName);
-            if (user != null)
+            if (user != null && user.IsValid)
                 return new CrmUserDefinition
                 {
                     UserId = user.UserId.Value,
@@ -51,22 +49,42 @@
                     DisplayName = user.FullName,
                     IsActive = user.IsActive,
                     Source = user.Source,
-                    PasswordHash = user.pas,
+                    PasswordHash = user.PasswordHash,
                     PasswordSalt = user.PasswordSalt,
-                    UpdateDate = user.UpdateDate,
-                    LastDirectoryUpdate = user.LastDirectoryUpdate
+                    UpdateDate = user.ModifiedDate,
+                    LastDirectoryUpdate = user.LastLoginDate
                 };
 
             return null;
         }
 
+        private CrmUserDefinition GetFirstById(string userId)
+        {
+            //var user = connection.TrySingle<Entities.UserRow>(criteria);
+
+            var user = _userRepository.GetUserById(Guid.Parse(userId));
+            if (user != null && user.IsValid)
+                return new CrmUserDefinition
+                {
+                    UserId = user.UserId.Value,
+                    Username = user.UserName,
+                    Email = user.EmailAddress,
+                    DisplayName = user.FullName,
+                    IsActive = user.IsActive,
+                    Source = user.Source,
+                    PasswordHash = user.PasswordHash,
+                    PasswordSalt = user.PasswordSalt,
+                    UpdateDate = user.ModifiedDate,
+                    LastDirectoryUpdate = user.LastLoginDate
+                };
+
+            return null;
+        }
+
+
         public ICrmUserDefinition ById(string id)
         {
-            return TwoLevelCache.Get<CrmUserDefinition>("UserByID_" + id, TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
-            {
-                using (var connection = SqlConnections.NewByKey("Default"))
-                    return GetFirst(connection, new Criteria(fld.UserId) == Int32.Parse(id));
-            });
+            return GetFirstById(id);
         }
 
         public ICrmUserDefinition ByUsername(string username)
@@ -74,21 +92,17 @@
             if (username.IsEmptyOrNull())
                 return null;
 
-            return TwoLevelCache.Get<UserDefinition>("UserByName_" + username.ToLowerInvariant(), 
-                TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
-            {
-                using (var connection = SqlConnections.NewByKey("Default"))
-                    return GetFirst(connection, new Criteria(fld.Username) == username);
-            });
+            return GetFirstByName(username);
         }
 
-        public static void RemoveCachedUser(int? userId, string username)
+        public static void RemoveCachedUser(Guid userId, string username)
         {
             if (userId != null)
-                TwoLevelCache.Remove("UserByID_" + userId);
+                TwoLevelCache.Remove("UserByID_" + userId.ToString());
 
             if (username != null)
                 TwoLevelCache.Remove("UserByName_" + username.ToLowerInvariant());
         }
+
     }
 }

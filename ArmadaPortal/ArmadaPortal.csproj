@@ -229,7 +229,8 @@
     <Compile Include="Modules\Administration\User\Authentication\CrmUserRetrieveService.cs" />
     <Compile Include="Modules\Administration\User\Authentication\CrmUserDefinition.cs" />
     <Compile Include="Modules\Administration\User\Authentication\ICrmUserDefinition.cs" />
-    <Compile Include="Modules\Administration\User\Authentication\IUserRetrieveService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\ICrmUserRetrieveService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\CrmPermissionService.cs" />
     <Compile Include="Modules\Flood\Document\DocumentEndpoint.cs" />
     <Compile Include="Modules\Flood\Document\DocumentImportForm.cs" />
     <Compile Include="Modules\Flood\Document\DocumentImportRequest.cs" />

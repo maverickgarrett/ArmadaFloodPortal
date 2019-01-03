@@ -10,7 +10,7 @@
     {
         [Hidden]
         public string OrderId { get; set; }
-        [MultipleFileUploadEditor, Required]
-        public String UploadDocument { get; set; }
+        [Required]
+        public string UploadDocument { get; set; }
     }
 }

@@ -26,6 +26,9 @@ namespace ArmadaPortal.Core.Models
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
 
+        public DateTime? LastLoginDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+
         public bool? IsLockedOut { get; set; }
         public DateTime? LockOutEndDate { get; set; }
 
@@ -38,6 +41,8 @@ namespace ArmadaPortal.Core.Models
         public string RoleName { get; set; }
 
         public string Source { get; set; }
+
+        public bool IsValid { get; set; }
 
         [IgnoreDataMember]
         public virtual IList<Branch> BranchAccounts { get; set; }

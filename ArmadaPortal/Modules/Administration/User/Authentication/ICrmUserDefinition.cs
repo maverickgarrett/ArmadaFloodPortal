@@ -38,7 +38,7 @@
             get;
         }
 
-        int RoleId
+        int? RoleId
         {
             get;
         }
@@ -67,7 +67,7 @@
             get;
         }
 
-        short IsActive
+        bool? IsActive
         {
             get;
         }

@@ -114,7 +114,7 @@
 
                         DocumentService.DocumentImport({
                             OrderId: this.form.OrderId.value,
-                            UploadFileName: this.form.UploadDocument,
+                            UploadDocument: this.form.UploadDocument,
                         }, response => {
                             Q.notifyInfo(
                                 'Inserted: ' + (response.Inserted || 0) +

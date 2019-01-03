@@ -5,73 +5,78 @@ using ArmadaPortal.Data;
 using ArmadaPortal.Core;
 using ArmadaPortal.Core.Models;
 using ArmadaPortal.Core.Repositories;
+using ArmadaPortal.Core.Extensions;
 
 namespace ArmadaPortal.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly CrmContext _crmContext;
-
-        public UserRepository()
-        {
-            if (_crmContext == null)
-            {
-                _crmContext = new CrmContext();
-            }
-        }
-        public UserRepository(CrmContext crmContext)
-        {
-            _crmContext = crmContext;
-        }
-
         public User GetUserById(Guid userId)
         {
-            var crmContactQuery = _crmContext.XrmServiceContext.ContactSet.Where(x => x.ContactId == userId && x.ContactStatusCode.Value == ContactStatus.Active).FirstOrDefault();
             var user = new User();
+            user.IsValid = false;
             var branches = new List<Branch>();
 
-            if (crmContactQuery !=null)
+            using (var context = new CrmContext())
             {
-                user.UserId = crmContactQuery.Id;
-                user.UserName = crmContactQuery.UserName;
-                user.FirstName = crmContactQuery.FirstName;
-                user.LastName = crmContactQuery.LastName;
-                //user.BranchId = crmContactQuery.ContactBranchPrimaryContact
-                user.EmailAddress = crmContactQuery.EMailAddress1;
-                user.AccountId = crmContactQuery.AccountId.Id;
-                user.AccountName = crmContactQuery.AccountId.Name;
-                user.IsLockedOut = crmContactQuery.LockoutEnabled;
-                user.LockOutEndDate = crmContactQuery.LockoutEndDate;
-                user.PasswordHash = crmContactQuery.PasswordHash;
-                user.PasswordSalt = "";
-                user.Source = "CrmContactQuery";
-                user.BranchAccounts = branches;
+                var crmContactQuery = context.XrmServiceContext.ContactSet.Where(x => x.ContactId == userId && x.ContactStatusCode.Value == ContactStatus.Active).FirstOrDefault();
+
+                if (crmContactQuery != null && !string.IsNullOrEmpty(crmContactQuery.Id.ToString()))
+                {
+                    user.UserId = crmContactQuery.Id;
+                    user.UserName = crmContactQuery.UserName;
+                    user.FirstName = crmContactQuery.FirstName;
+                    user.LastName = crmContactQuery.LastName;
+                    //user.BranchId = crmContactQuery.ContactBranchPrimaryContact
+                    user.EmailAddress = crmContactQuery.EMailAddress1;
+                    user.AccountId = crmContactQuery.ParentCustomerId == null ? Guid.Empty : crmContactQuery.ParentCustomerId.Id;
+                    user.AccountName = crmContactQuery.ParentCustomerId == null ? string.Empty : crmContactQuery.ParentCustomerId.Name;
+                    user.IsLockedOut = crmContactQuery.LockoutEnabled;
+                    user.LockOutEndDate = crmContactQuery.LockoutEndDate;
+                    user.PasswordHash = crmContactQuery.PasswordHash;
+                    user.PasswordSalt = "";
+                    user.LastLoginDate = crmContactQuery.LastSuccessfulLogin;
+                    user.ModifiedDate = crmContactQuery.ModifiedOn;
+                    user.Source = "crm";
+                    user.BranchAccounts = branches;
+                    user.IsActive = true;
+                    user.IsValid = true;
+                }
             }
             return user;
         }
 
         public User GetUserByName(string userName)
         {
-            var crmContactQuery = _crmContext.XrmServiceContext.ContactSet.Where(x => x.UserName == userName && x.ContactStatusCode.Value == ContactStatus.Active).SingleOrDefault();
             var user = new User();
+            user.IsValid = false;
             var branches = new List<Branch>();
 
-            if (crmContactQuery != null)
+            using (var context = new CrmContext())
             {
-                user.UserId = crmContactQuery.Id;
-                user.UserName = crmContactQuery.UserName;
-                user.FirstName = crmContactQuery.FirstName;
-                user.LastName = crmContactQuery.LastName;
-                //user.BranchId = crmContactQuery.ContactBranchPrimaryContact
-                user.EmailAddress = crmContactQuery.EMailAddress1;
-                user.AccountId = crmContactQuery.AccountId.Id;
-                user.AccountName = crmContactQuery.AccountId.Name;
-                user.IsLockedOut = crmContactQuery.LockoutEnabled;
-                user.LockOutEndDate = crmContactQuery.LockoutEndDate;
-                user.PasswordHash = crmContactQuery.PasswordHash;
-                user.PasswordSalt = "";
-                user.Source = "CrmContactQuery";
-                user.BranchAccounts = branches;
+                var crmContactQuery = context.XrmServiceContext.ContactSet.Where(x => x.UserName == userName && x.ContactStatusCode.Value == ContactStatus.Active).SingleOrDefault();
+
+                if (crmContactQuery != null && !string.IsNullOrEmpty(crmContactQuery.Id.ToString()))
+                {
+                    user.UserId = crmContactQuery.Id;
+                    user.UserName = crmContactQuery.UserName;
+                    user.FirstName = crmContactQuery.FirstName;
+                    user.LastName = crmContactQuery.LastName;
+                    //user.BranchId = crmContactQuery.ContactBranchPrimaryContact
+                    user.EmailAddress = crmContactQuery.EMailAddress1;
+                    user.AccountId = crmContactQuery.ParentCustomerId == null ? Guid.Empty : crmContactQuery.ParentCustomerId.Id;
+                    user.AccountName = crmContactQuery.ParentCustomerId == null ? string.Empty : crmContactQuery.ParentCustomerId.Name;
+                    user.IsLockedOut = crmContactQuery.LockoutEnabled;
+                    user.LockOutEndDate = crmContactQuery.LockoutEndDate;
+                    user.PasswordHash = crmContactQuery.PasswordHash;
+                    user.PasswordSalt = "";
+                    user.LastLoginDate = crmContactQuery.LastSuccessfulLogin;
+                    user.ModifiedDate = crmContactQuery.ModifiedOn;
+                    user.Source = "crm";
+                    user.BranchAccounts = branches;
+                    user.IsActive = true;
+                    user.IsValid = true;
+                }
             }
             return user;
         }

@@ -8,7 +8,7 @@ namespace ArmadaPortal
     public class DocumentImportRequest : ServiceRequest
     {
         public string OrderId { get; set; }
-        public String UploadDocument { get; set; }
+        public string UploadDocument { get; set; }
     }
 
     public class DocumentImportResponse : ServiceResponse

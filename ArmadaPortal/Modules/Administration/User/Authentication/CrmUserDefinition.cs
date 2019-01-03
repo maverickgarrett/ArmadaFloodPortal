@@ -10,7 +10,7 @@
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public string UserImage { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public Guid UserId { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
@@ -27,7 +27,7 @@
         public string BranchId { get; set; }
         public string BranchName { get; set; }
         public string CrmContactId { get; set; }
-        public int RoleId { get; set; }
+        public int? RoleId { get; set; }
         public string RoleName { get; set; }
     }
 }
