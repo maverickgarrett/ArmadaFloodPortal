@@ -72,7 +72,7 @@ namespace ArmadaPortal.Flood.Entities
         }
 
 
-        [DisplayName("Upload PDF"), Size(100), MultipleFileUploadEditor]
+        [DisplayName("Upload Doc"), Size(100), MultipleFileUploadEditor]
         public String UploadDocument
         {
             get { return Fields.UploadDocument[this]; }

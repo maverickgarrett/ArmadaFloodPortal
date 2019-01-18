@@ -6442,7 +6442,7 @@ namespace ArmadaPortal.Core
 		Basic = 100000001,
 
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Migration = 100000001
+        Migration = 100000002
     }
 	
 	/// <Summary>

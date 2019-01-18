@@ -63,7 +63,7 @@ namespace ArmadaPortal.Flood.Entities
         }
 
 
-        [DisplayName("Is Rush Order?")]
+        [DisplayName("Rush Order?")]
         public bool? IsUrgent
         {
             get { return Fields.IsUrgent[this]; }
@@ -100,14 +100,14 @@ namespace ArmadaPortal.Flood.Entities
         }
 
 
-        [DisplayName("Loan Type"), LookupInclude]
+        [DisplayName("Loan Type"), NotNull, LookupInclude]
         public FloodOrderLoanTypeEnum? LoanType
         {
             get { return (FloodOrderLoanTypeEnum?)Fields.LoanType[this]; }
             set { Fields.LoanType[this] = (Int32?)value; }
         }
 
-        [DisplayName("Loan Number"), Size(20), QuickSearch(SearchType.StartsWith)]
+        [DisplayName("Loan Number"), Size(20), NotNull, QuickSearch(SearchType.StartsWith)]
         public String LoanNumber
         {
             get { return Fields.LoanNumber[this]; }
@@ -298,14 +298,14 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.NoteToAnalyst[this] = value; }
         }
 
-        [DisplayName("Parcel Number"), Size(50)]
+        [DisplayName("Parcel/Legal"), Size(50)]
         public String ParcelNumber
         {
             get { return Fields.ParcelNumber[this]; }
             set { Fields.ParcelNumber[this] = value; }
         }
 
-        [DisplayName("Upload PDF"), Size(100), MultipleFileUploadEditor]
+        [DisplayName("Upload Docs"), Size(100), MultipleFileUploadEditor]
         public String UploadDocument
         {
             get { return Fields.UploadDocument[this]; }

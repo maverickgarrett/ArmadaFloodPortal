@@ -288,8 +288,8 @@ namespace ArmadaDataImport
                 floodRiskOrder.OrderDate = DateTime.UtcNow;
                 floodRiskOrder.LoanType = LoanType.Commercial;
                 floodRiskOrder.FloodOrderContactId = new EntityReference(Contact.EntityLogicalName, SampleContactId);
-                floodRiskOrder.EmailCertCC = floodOrderInput.Contact_Email;
-                floodRiskOrder.EmailCertTo = floodOrderInput.Contact_Additional_Email;
+                floodRiskOrder.EmailCertTo = floodOrderInput.Contact_Email;
+                floodRiskOrder.EmailCertCC = floodOrderInput.Contact_Additional_Email;
                 floodRiskOrder.OrderType = ArmadaPortal.Core.OrderType.LifeOfLoan;
                 floodRiskOrder.FloodDetStatus = FloodDeterminationStatus.Completed;
                 floodRiskOrder.Borrower = floodOrderInput.Borrower;
@@ -304,6 +304,11 @@ namespace ArmadaDataImport
                 floodRiskOrder.EnteredCountry = "US";
                 floodRiskOrder.MatchedCountry = "US";
 
+                if (!string.IsNullOrEmpty(floodOrderInput.Panel_date))
+                {
+                    floodRiskOrder.FloodMapDate = DateTime.Parse(floodOrderInput.Panel_date);
+                }
+
                 if (!string.IsNullOrEmpty(floodOrderInput.Determination_Date))
                 {
                     floodRiskOrder.FloodDetDate = DateTime.Parse(floodOrderInput.Determination_Date);
@@ -314,13 +319,15 @@ namespace ArmadaDataImport
                 floodRiskOrder.CityOrig = floodOrderInput.Entered_Address_city;
                 floodRiskOrder.StateOrig = floodOrderInput.Entered_Address_state;
                 floodRiskOrder.ZipOrig = floodOrderInput.Entered_Address_zip;
+                floodRiskOrder.AddressLegalNumber = floodOrderInput.Entered_Address_Legal;
+
 
                 floodRiskOrder.Address1Matched = floodOrderInput.Matched_Address_1;
                 floodRiskOrder.Address2Matched = floodOrderInput.Matched_Address_2;
                 floodRiskOrder.CityMatched = floodOrderInput.Matched_Address_city;
                 floodRiskOrder.StateMatched = floodOrderInput.Matched_Address_state;
                 floodRiskOrder.ZipMatched = floodOrderInput.Matched_Address_zip;
-                floodRiskOrder.AddressLegalNumber = floodOrderInput.Matched_Address_legal;
+                floodRiskOrder.FullMatchedLegalAddress = floodOrderInput.Matched_Address_legal;
 
                 floodRiskOrder.HMDA = floodOrderInput.HMDA;
 
@@ -353,7 +360,7 @@ namespace ArmadaDataImport
 
                 if (!string.IsNullOrEmpty(floodOrderInput.Order_date))
                 {
-                    floodRiskOrder.OrderDate = DateTime.Parse(floodOrderInput.Order_date);
+                    floodRiskOrder.OrderDate = DateTime.Parse(floodOrderInput.Order_date).ToUniversalTime();
                 }
                 floodRiskOrder.FloodInfoZone = floodOrderInput.Zone;
 
