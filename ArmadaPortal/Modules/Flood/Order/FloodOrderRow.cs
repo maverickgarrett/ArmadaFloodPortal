@@ -270,14 +270,14 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.ModifiedDate[this] = value; }
         }
 
-        [DisplayName("Email Cert TO"), EmailEditor, NotNull, Size(100)]
+        [DisplayName("Email Cert TO"), Size(100)]
         public String EmailCertTo
         {
             get { return Fields.EmailCertTo[this]; }
             set { Fields.EmailCertTo[this] = value; }
         }
 
-        [DisplayName("Email Cert CC"), EmailEditor, Size(100)]
+        [DisplayName("Email Cert CC"), Size(100)]
         public String EmailCertCC
         {
             get { return Fields.EmailCertCC[this]; }
@@ -305,7 +305,7 @@ namespace ArmadaPortal.Flood.Entities
             set { Fields.ParcelNumber[this] = value; }
         }
 
-        [DisplayName("Upload Document PDF,DOC,JPG"), Size(100), MultipleFileUploadEditor]
+        [DisplayName("Upload PDF"), Size(100), MultipleFileUploadEditor]
         public String UploadDocument
         {
             get { return Fields.UploadDocument[this]; }

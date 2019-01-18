@@ -196,6 +196,7 @@
                         floodOrderDocument.CustomerUploadFiles.Add(new DownloadLink
                         {
                             Title = uploadfile.OriginalName,
+                            AltText = uploadfile.OriginalName,
                             FileContent = AttachmentHelper.CreateFromStream(fileStream, uploadfile.OriginalName)
                         });
                     }

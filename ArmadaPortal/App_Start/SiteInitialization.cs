@@ -21,15 +21,15 @@
                 Serenity.Web.CommonInitialization.Run();
 
                 var registrar = Dependency.Resolve<IDependencyRegistrar>();
-                //registrar.RegisterInstance<IAuthorizationService>(new Administration.AuthorizationService());
-                //registrar.RegisterInstance<IAuthenticationService>(new Administration.AuthenticationService());
-                //registrar.RegisterInstance<IPermissionService>(new LogicOperatorPermissionService(new Administration.PermissionService()));
+                registrar.RegisterInstance<IAuthorizationService>(new Administration.AuthorizationService());
+                registrar.RegisterInstance<IAuthenticationService>(new Administration.AuthenticationService());
+                registrar.RegisterInstance<IPermissionService>(new LogicOperatorPermissionService(new Administration.PermissionService()));
                 registrar.RegisterInstance<IUserRetrieveService>(new Administration.UserRetrieveService());
 
-                registrar.RegisterInstance<IAuthorizationService>(new Administration.AuthorizationService());
-                registrar.RegisterInstance<IAuthenticationService>(new Administration.CrmAuthenticationService());
-                registrar.RegisterInstance<IPermissionService>(new LogicOperatorPermissionService(new Administration.PermissionService()));
-                registrar.RegisterInstance<ICrmUserRetrieveService>(new Administration.CrmUserRetrieveService());
+                //registrar.RegisterInstance<IAuthorizationService>(new Administration.AuthorizationService());
+                //registrar.RegisterInstance<IAuthenticationService>(new Administration.CrmAuthenticationService());
+                //registrar.RegisterInstance<IPermissionService>(new LogicOperatorPermissionService(new Administration.PermissionService()));
+                //registrar.RegisterInstance<ICrmUserRetrieveService>(new Administration.CrmUserRetrieveService());
                 //registrar.RegisterInstance<ICrmUserRetrieveService>(new Administration.CrmUserRetrieveService());
 
 

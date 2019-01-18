@@ -11,21 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaPortal.Data", "Armada
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaPortal.TestConsole", "ArmadaPortal.TestConsole\ArmadaPortal.TestConsole.csproj", "{C9DB4996-7F1B-414E-AA57-2B2B10C70702}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmadaDataImport", "ArmadaDataImport\ArmadaDataImport.csproj", "{360C0EFA-A63E-4D1B-B889-F90455716C07}"
+EndProject
 Global
-	GlobalSection(CrmCodeGeneration) = preSolution
-		UseSSL = True
-		UseIFD = False
-		UseOnline = True
-		UseOffice365 = True
-		ServerName = crm.dynamics.com
-		ServerPort = 
-		HomeRealm = 
-		Domain = 
-		WindowsAuthorization = False
-		Organization = armadadevelopment
-		IncludeEntities = account,contact,lead,opportunity,systemuser
-		IncludeNonStandard = True
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -47,11 +35,29 @@ Global
 		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DB4996-7F1B-414E-AA57-2B2B10C70702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360C0EFA-A63E-4D1B-B889-F90455716C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360C0EFA-A63E-4D1B-B889-F90455716C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360C0EFA-A63E-4D1B-B889-F90455716C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360C0EFA-A63E-4D1B-B889-F90455716C07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5F34DDC-FF6A-4A74-A53B-3ED839059763}
+	EndGlobalSection
+	GlobalSection(CrmCodeGeneration) = preSolution
+		UseSSL = True
+		UseIFD = False
+		UseOnline = True
+		UseOffice365 = True
+		ServerName = crm.dynamics.com
+		ServerPort = 
+		HomeRealm = 
+		Domain = 
+		WindowsAuthorization = False
+		Organization = armadadevelopment
+		IncludeEntities = account,contact,lead,opportunity,systemuser
+		IncludeNonStandard = True
 	EndGlobalSection
 EndGlobal

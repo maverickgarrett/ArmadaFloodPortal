@@ -98,13 +98,14 @@ namespace ArmadaPortal.Data.Repositories
             {
                 try
                 {
+                    var FloodDocTitle = documentUpload.CustomerUploadFiles.FirstOrDefault().Title;
                     var FloodDocumentAddition = new FloodRiskOrderDocument
                     {
                         Id = returnDocumentId,
                         ShowinPortal = true,
                         FloodRiskOrder = new EntityReference(FloodRiskOrder.EntityLogicalName, returnOrderId),
                         DocumentType = DocumentType.CustomerUploaded,
-                        Name = "Customer Uploaded Documents"
+                        Name = FloodDocTitle
                     };
 
                     _xrm.AddObject(FloodDocumentAddition);
@@ -156,6 +157,7 @@ namespace ArmadaPortal.Data.Repositories
             if (order.CustomerUploadFiles != null && order.CustomerUploadFiles.Count() > 0)
             {
                 var returnDocumentId = Guid.NewGuid();
+
                 try
                 {
                     var FloodDocumentAddition = new FloodRiskOrderDocument
@@ -164,8 +166,7 @@ namespace ArmadaPortal.Data.Repositories
                         ShowinPortal = true,
                         FloodRiskOrder = new EntityReference(FloodRiskOrder.EntityLogicalName, returnOrderId),
                         DocumentType = DocumentType.CustomerUploaded,
-                        
-                        Name = "Customer Uploaded Documents"
+                        Name = "Customer Uploaded "
                     };
 
                     _xrm.AddObject(FloodDocumentAddition);
@@ -186,6 +187,7 @@ namespace ArmadaPortal.Data.Repositories
                         var AttachmentAddition = new Annotation
                         {
                             Id = returnAnnotationId,
+                            Subject = doc.FileName,
                             IsDocument = true,
                             MimeType = doc.FileContent.Meta.MimeType,
                             ObjectId = new EntityReference(FloodRiskOrderDocument.EntityLogicalName, returnDocumentId),

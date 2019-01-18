@@ -6220,7 +6220,7 @@ table.text-center th {
   background-color: #00c0ef !important;
 }
 .bg-blue {
-  background-color: #0073b7 !important;
+  background-color: #204a72 !important;
 }
 .bg-light-blue,
 .label-primary,
@@ -6281,7 +6281,7 @@ table.text-center th {
   background-color: #00a7d0 !important;
 }
 .bg-blue-active {
-  background-color: #005384 !important;
+  background-color: #15304a !important;
 }
 .bg-light-blue-active,
 .modal-primary .modal-header,
@@ -6335,7 +6335,7 @@ table.text-center th {
   color: #00c0ef !important;
 }
 .text-blue {
-  color: #0073b7 !important;
+  color: #204a72 !important;
 }
 .text-black {
   color: #111111 !important;
@@ -6453,12 +6453,12 @@ table.text-center th {
   color: #fff;
 }
 .bg-blue-gradient {
-  background: #0073b7 !important;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0073b7), color-stop(1, #0089db)) !important;
-  background: -ms-linear-gradient(bottom, #0073b7, #0089db) !important;
-  background: -moz-linear-gradient(center bottom, #0073b7 0%, #0089db 100%) !important;
-  background: -o-linear-gradient(#0089db, #0073b7) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
+  background: #204a72 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #204a72), color-stop(1, #285c8e)) !important;
+  background: -ms-linear-gradient(bottom, #204a72, #285c8e) !important;
+  background: -moz-linear-gradient(center bottom, #204a72 0%, #285c8e 100%) !important;
+  background: -o-linear-gradient(#285c8e, #204a72) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#285c8e', endColorstr='#204a72', GradientType=0) !important;
   color: #fff;
 }
 .bg-aqua-gradient {
@@ -6880,7 +6880,7 @@ section.content > .s-DataGrid {
 }
 .ui-dialog.mobile-layout .ui-dialog-titlebar {
   color: white;
-  background: #0073b7;
+  background: #204a72;
 }
 .ui-dialog.mobile-layout .ui-dialog-titlebar .ui-dialog-titlebar-close,
 .ui-dialog.mobile-layout .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
@@ -7405,11 +7405,12 @@ section.content > .s-DataGrid {
   font-style: italic;
   color: #966;
 }
-.s-ArmadaFlood-OrdersDialog > .size {
-  width: 650px;
-}
-.s-ArmadaFlood-OrdersDialog .caption {
-  width: 150px;
+/*.s-ArmadaFlood-OrdersDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}*/
+.s-FilterDisplayBar {
+  visibility: hidden;
 }
 .s-NotesEditor {
   border: 1px solid #ccc;

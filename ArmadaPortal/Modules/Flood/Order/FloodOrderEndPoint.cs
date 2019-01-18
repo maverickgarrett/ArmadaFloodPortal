@@ -395,6 +395,7 @@
                     {
                         order.CustomerUploadFiles.Add(new DownloadLink { 
                                     Title = "Customer Uploaded - " + uploadfile.OriginalName,
+                                    AltText = uploadfile.OriginalName,
                                     FileName = uploadfile.OriginalName,
                                     FileContent = AttachmentHelper.CreateFromStream(fileStream, uploadfile.OriginalName)
                         });

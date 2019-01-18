@@ -25,6 +25,19 @@
             DialogUtils.pendingChangesConfirmation(this.element, () => this.getSaveState() != this.loadedState);
         }
 
+        protected updateTitle() {
+
+            if (this.isEditMode()) {
+                this.dialogTitle = "Order Number " + this.form.OrderNumber.value;
+            }
+        }
+
+        protected categoryToggler(categoryTitle: string) {
+            var myTag = categoryTitle;
+            var ele = this.element.find(".category-title:contains('" + myTag + "')").parent();
+
+            ele.toggle(false); //hidden by default
+        };
 
         loadEntity(entity: FloodOrderRow) {
             super.loadEntity(entity);
@@ -206,6 +219,7 @@
 
 
             if (this.isEditMode()) {
+  
                 Serenity.EditorUtils.setReadonly(this.element.find('.editor'), true);
                 Serenity.EditorUtils.setReadonly(this.element.find('.emaildomain'), true);
                 this.toolbar.findButton('cancel-button').hide();
@@ -216,6 +230,8 @@
                 this.deleteButton.hide();
                 this.form.UploadDocument.element.hide();
                 this.element.find(".category-title:contains('Documents')").parent().hide(false);
+                this.categoryToggler('Documents');
+                this.form.UploadDocument.element.closest('.category').toggle(false);
 
                 //Serenity.EditorUtils.setReadOnly(this.form.LoanNumber, false);
                 //Serenity.EditorUtils.setReadOnly(this.form.Borrower, false);

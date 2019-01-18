@@ -4,6 +4,7 @@
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.filterable()
+    @Serenity.Decorators.responsive()
 
     export class FloodOrderGrid extends Serenity.EntityGrid<FloodOrderRow, any> {
 
@@ -30,6 +31,7 @@
             super.createQuickFilters();
 
             this.orderStatusFilter = this.findQuickFilter(Serenity.EnumEditor, fld.FloodOrderStatus);
+            //var gridFilterDisplayBar = this.element.find('.s-FilterDisplayBar');
         }
 
 
@@ -80,14 +82,13 @@
 
             // need to register this plugin for grouping or you'll have errors
             //grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
-
             return grid;
         }
 
 
         protected getSlickOptions(): Slick.GridOptions {
             var opt = super.getSlickOptions();
-            opt.showFooterRow = false;
+            //opt.showFooterRow = false;
             //opt.rowHeight = 250;
             return opt;
         }
@@ -108,6 +109,11 @@
 
         public set_orderstatusfilter(value: number): void {
             this.orderStatusFilter.value = value == null ? '' : value.toString();
+        }
+
+        public hidefilterbar(): void {
+
+            this.element.find('.s-FilterDisplayBar').hide();
         }
 
 

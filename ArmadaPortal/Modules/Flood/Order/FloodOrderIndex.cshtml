@@ -20,11 +20,7 @@
         <div class="box-body">
             <a class="btn btn-app" href="~/Flood/Order?orderStatusGrouping=@Convert.ChangeType(ArmadaPortal.Flood.FloodOrderDetStatusTypeEnum.AllOrders, typeof(int))">
                 <span class="badge bg-navy">@Model.TotalOrderCount</span>
-                <i class="fa fa-inbox"></i> Total Orders
-            </a>
-            <a class="btn btn-app" href="~/Flood/Order?orderStatusGrouping=@Convert.ChangeType(ArmadaPortal.Flood.FloodOrderDetStatusTypeEnum.Draft, typeof(int))">
-                <span class="badge bg-teal">@Model.DraftCount</span>
-                <i class="fa fa-inbox"></i> Draft
+                <i class="fa fa-inbox"></i> All Orders
             </a>
             <a class="btn btn-app" href="~/Flood/Order?orderStatusGrouping=@Convert.ChangeType(ArmadaPortal.Flood.FloodOrderDetStatusTypeEnum.Ordered, typeof(int))">
                 <span class="badge bg-teal">@Model.OrderedCount</span>
@@ -64,6 +60,7 @@
         var q = Q.parseQueryString();
         if (q.orderStatusGrouping != null && q.orderStatusGrouping.length) {
             orderGrid.set_orderstatusfilter(parseInt(q.orderStatusGrouping, 10));
+            orderGrid.hideFilterBar();
         }
         Q.initFullHeightGridPage($('#GridDiv'));
     });

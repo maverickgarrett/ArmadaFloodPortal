@@ -18,6 +18,8 @@
         public String OrderAccountId { get; set; }
         [HideOnInsert]
         public String BranchId { get; set; }
+        [HideOnInsert, HideOnUpdate]
+        public String OrderNumber { get; set; }
 
         public Boolean IsUrgent { get; set; }
         [HalfWidth]

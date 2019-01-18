@@ -18,16 +18,20 @@
         [FilterOnly, QuickFilter]
         public FloodOrderDetStatusTypeEnum FloodOrderStatus { get; set; }
 
-        [EditLink, AlignRight]
+        [EditLink, Width(100)]
         public String OrderNumber { get; set; }
+        [Width(80)]
         public DateTime? OrderDate { get; set; }
 
+        [Width(100)]
         public String FloodOrderStatusDescription { get; set; }
-        public String Borrower { get; set; }
-        public String LoanNumber { get; set; }
         [Width(250)]
+        public String Borrower { get; set; }
+        [Width(100)]
+        public String LoanNumber { get; set; }
+        [Width(400)]
         public String AddressEnteredFormatted { get; set; }
-        [Width(50)]
+        [Width(75)]
         public String FloodZone { get; set; }
     }
 }   

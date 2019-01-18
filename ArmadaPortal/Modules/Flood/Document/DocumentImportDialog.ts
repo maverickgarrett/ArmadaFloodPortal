@@ -57,7 +57,7 @@
 
                             this.dialogClose();
                             var message = JSON.parse(servicecall.responseText);
-                            Q.notifySuccess(message, Q.text("Flood Order Document"), options);
+                            Q.notifySuccess(message, Q.text("Document Saved Successfully"), options);
                         },
                         {
                             blockUI: true,
